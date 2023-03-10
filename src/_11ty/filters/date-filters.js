@@ -2,12 +2,12 @@ const { DateTime } = require('luxon');
 
 // Date formatting (human readable)
 function readableDateFilter (dateObj) {
-  return DateTime.fromJSDate(dateObj).toFormat('DDD');
+  return DateTime.fromSQL(dateObj).toFormat('DDD');
 };
 
 // Date formatting (machine readable)
 function machineDateFilter (dateObj) {
-  return DateTime.fromJSDate(dateObj).toFormat('yyyy-MM-dd');
+  return DateTime.fromSQL(dateObj).toFormat('yyyy-MM-dd');
 }
 
 module.exports = {
