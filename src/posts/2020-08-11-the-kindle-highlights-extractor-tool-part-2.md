@@ -11,13 +11,13 @@ tags:
 coverImage: "kindle-e1613119249898.jpg"
 ---
 
-Yesterday [I wrote about a tool I'm building](https://tawanda.dev/posts/2020-08-10-building-my-first-app-a-kindle-reader-highlights-extractor-part-1/) to automatically sort through and export my Kindle Paperwhite clippings. I've since made progress as I'll detail here.
+Yesterday [I wrote about a tool I'm building](https://tawanda.dev/kindle-highlights-tool/) to automatically sort through and export my Kindle Paperwhite clippings. I've since made progress as I'll detail here.
 
 ## Opening a txt file in Node
 
 I used node's filesystem module to open the txt file. It's pretty straightforward as shown below:
 
-```
+```js
 const fs = require('fs');
 fs.readFile('./test.txt', 'utf8', (err, data) => {
     let file = data;
@@ -34,7 +34,7 @@ That's all there is to it. I may have to specify what happens if err is returned
 
 At this point the quotes were stored in a giant string named **file**. So I figured I might as well split them into individual quotes. For this I used split.
 
-```
+```js
 highlights = file.split('==========');
 ```
 
@@ -42,19 +42,19 @@ This works because all the highlights are demarcated by ten equal signs. In Java
 
 The returned array, named highlights, would therefore contain a number of substrings equal to the number of highlights in the original clippings document
 
-```
+```js
 [
-  '﻿Mirrors (Eduardo Galeano)\r\n' +
+  'Mirrors (Eduardo Galeano)\r\n' +
     '- Your Highlight at location 4481-4481 | Added on Wednesday, 6 November 2019 13:36:03\r\n' +
     '\r\n' +
     '“War is God’s way of teaching us geography.”\r\n',
   '\r\n' +
-    '﻿Mirrors (Eduardo Galeano)\r\n' +
+    'Mirrors (Eduardo Galeano)\r\n' +
     '- Your Highlight at location 4879-4879 | Added on Wednesday, 6 November 2019 17:45:36\r\n' +
     '\r\n' +
     'To be natural and clean, like the water we drink, love must be free and mutual. But men demand obedience and deny pleasure.\r\n',       
   '\r\n' +
-    '﻿A Brightness Long Ago (Guy Gavriel Kay)\r\n' +
+    'A Brightness Long Ago (Guy Gavriel Kay)\r\n' +
     '- Your Highlight at location 214-214 | Added on Sunday, 10 November 2019 14:25:42\r\n' +
     '\r\n' +
     'We make our own choices sometimes, sometimes they are made for us.\r\n']
@@ -62,7 +62,7 @@ The returned array, named highlights, would therefore contain a number of substr
 
 At this point I could loop through the whole array and extract the relevant details of each highlight using a simple for loop:
 
-```
+```js
 for( let i = 0; i < highlights.length; i++) {
         highlight = highlights[i].split('\r\n');
         highlight.filter(e => e.length);
@@ -87,7 +87,7 @@ In the end I was only left with three substrings per highlight array:
 
 The next step was to figure out how to store this information. I decided to make each **book** an object with two (for now) properties - the book details, and an array containing all the quotes. These objects would be stored in an array I named **books**:
 
-```
+```js
 
         function Book(details, quote) {
             this.bookDetails = details,
@@ -119,7 +119,7 @@ If the array is not empty the **searchBooks()** function is called. Defined in t
 
 If the book exists it returns the index of that book, and if a book does not exist it returns -1. (_Again this feels very clumsy_). I have done this because I know I will need to search through the books at some point (_I will likely have to refactor this function_) The **searchBooks** function is shown below:
 
-```
+```js
  function searchBooks(arr, title) {
         for(let i = 0; i < arr.length; i++) {
             if (books[i].bookDetails === title) {

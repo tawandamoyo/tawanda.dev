@@ -21,8 +21,7 @@ I decided to use JavaScript for the simple reason that it's the language I am mo
 
 On the Kindle reader the clippings are stored in a txt file named 'clippings.txt' (Brilliant, isn't it?). This file contains for each highlight the book's title and author, the time and date of the highlight, the location in the book and the clipping itself in the format below:
 
-    
-```
+```txt
 Mirrors (Eduardo Galeano)
 - Your Highlight at location 4481-4481 | Added on Wednesday, 6 November 2019 13:36:03
 

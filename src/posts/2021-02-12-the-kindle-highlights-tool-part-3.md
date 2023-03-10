@@ -11,11 +11,11 @@ coverImage: "kindle-e1613119249898.jpg"
 > 
 > J. R. R. Tolkien, foreword to Lord of The Rings
 
-I recently went back to my Kindle Tool, ([Part 1](https://tawanda.dev/posts/2020-08-10-building-my-first-app-a-kindle-reader-highlights-extractor-part-1/), [Part 2](https://tawanda.dev/posts/2020-08-11-the-kindle-highlights-extractor-tool-part-2/)) to try and add more features. I wanted to have to automatically create txt files so I could easily review the highlights.
+I recently went back to my Kindle Tool, ([Part 1](https://tawanda.dev/kindle-highlights-tool/), [Part 2](https://tawanda.dev/kindle-highlights-tool-2/)) to try and add more features. I wanted to have to automatically create txt files so I could easily review the highlights.
 
 Firstly I needed to make the a new folder called books to hold all the books. Using fs.mkdir, (and StackOveflow) this was pretty straightforward:
 
-```
+```js
 const pathName = path.join(__dirname, '/books/');
 
 fs.mkdir(pathName, { recursive: true }, (error) => {
@@ -32,7 +32,7 @@ I declared a variable called pathName which is the output folder. I should proba
 
 I then used Node's fs.appendFile() method to create the txt files by looping through the books array. I could have used other methods, like streams or writefile but I took the easy way out.
 
-```
+```js
 books.forEach((book) => {
         txtFilePath = pathName + book.title + '.txt';
         for (let i = 0; i < book.highlights.length; i++) {
