@@ -3,7 +3,7 @@ layout: base.njk
 section: home
 ---
 <div class="home-page">
-	<div class="home-page__bg-square"></div>
+	{# <div class="home-page__bg-square"></div> #}
 
   {# Hero #}
   <div class="hero">
@@ -13,7 +13,7 @@ section: home
         <div class="hero__body">{{ home.body | markdown | safe }}</div>
       {% endif %}
     </div>
-    <div class="hero__col">
+    {# <div class="hero__col">
       {% image
         home.image,
         home.image_alt,
@@ -21,7 +21,7 @@ section: home
         "hero__image shadow",
         "eager"
       %}
-    </div>
+    </div> #}
   </div>
 
   {# Projects #}
@@ -41,6 +41,6 @@ section: home
   {{ articlelist(
     articles = collections.post | reverse,
     show_tags = false,
-    limit = 3
+    limit = 4
   ) }}
 </div>
