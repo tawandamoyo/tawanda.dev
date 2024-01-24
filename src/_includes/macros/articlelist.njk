@@ -7,7 +7,10 @@
         {% if article.url == url %} data-current="current item"{% endif %}
       >
         <a class="article-card__link" href="{{ article.url | url }}">
-          <h5 class="article-card__title">{{ article.data.title }}</h5>
+          <div class="article-card__meta">
+            <h5 class="article-card__title">{{ article.data.title }}</h5>
+            <p class="article-card__date">{{article.data.date | readableDate}}</p>
+          </div>
           {% if article.data.summary %}
             <p class="article-card__summary">
               {{ article.data.summary }}
