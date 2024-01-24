@@ -37,6 +37,10 @@
   }
 }
 
+.article-card__meta {
+  display: flex;
+  justify-content: space-between;
+}
 .article-card__title {
   margin: 5px 0;
 }
