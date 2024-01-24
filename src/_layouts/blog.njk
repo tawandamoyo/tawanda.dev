@@ -11,10 +11,10 @@ permalink: /blog/index.html
   {# Article List #}
   {% from "macros/articlelist.njk" import articlelist %}
   {{ articlelist(
-    articles = pagination.items | reverse,
-    show_tags = true
+    articles = collections.post | reverse,
+    show_tags = false
   ) }}
 
-  {# Pagination #}
-  {% include 'partials/pagination.njk' %}
+  {# Pagination
+  {% include 'partials/pagination.njk' %} #}
 </div>
