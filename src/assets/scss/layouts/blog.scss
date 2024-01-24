@@ -40,6 +40,11 @@
 .article-card__meta {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+
+  @media (min-width: 780px) {
+    flex-direction: row;
+  }
 }
 .article-card__title {
   margin: 5px 0;
