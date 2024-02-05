@@ -1,5 +1,5 @@
 ---
-title: eCommerce application.
+title: ElectroShop
 emoji: 💾
 metaDescription: Full stack eCommerce app.
 date: "2023-03-01"

@@ -16,7 +16,7 @@ A project to learn more about Machine Learning and JS by implementing a neural n
 
 ### Solution
 
-The neural network is built using vanilla JavaScript and then trained on the MNIST data set. There is also a frontend built in React that predicts handdrawn digits using the model.
+The neural network is built using vanilla JavaScript and then trained on the MNIST data set.
 
 [Live Version](https://machine-learning-mnist.vercel.app/) | 
 [Github](https://github.com/tawandamoyo/neural-nets)
