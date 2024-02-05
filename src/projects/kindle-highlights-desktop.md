@@ -21,4 +21,4 @@ A desktop application built with Electron. The tool takes in the kindle highligh
 
 The tool can also be used to get (a) random highlight(s) from the terminal.
 
-[Github](https://github.com/tawandamoyo/kindle-tool-cli)
+[Github](https://github.com/tawandamoyo/Kindle-Highlights-Desktop-App)
