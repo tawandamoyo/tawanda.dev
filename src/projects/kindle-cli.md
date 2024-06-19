@@ -1,5 +1,5 @@
 ---
-title: Kindle Highlight CLI tool
+title: Kindle Highlights CLI tool
 emoji: 💾
 metaDescription: A Node JS CLI tool for extracting and parsing highlights and notes made on Kindle ereaders.
 date: "2023-03-02"

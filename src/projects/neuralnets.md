@@ -17,7 +17,6 @@ A project to learn more about Machine Learning and JS by implementing a neural n
 
 ### Solution
 
-The neural network is built using vanilla JavaScript and then trained on the MNIST data set.
+The neural network is implemented in vanilla JavaScript and then trained on the MNIST data set.
 
-[Live Version](https://machine-learning-mnist.vercel.app/) | 
 [Github](https://github.com/tawandamoyo/neural-nets)

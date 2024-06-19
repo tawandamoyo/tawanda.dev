@@ -1,9 +1,9 @@
 ---
-title: Kindle Highlights Desktop tool
+title: Kindle Highlights Desktop App
 emoji: 💾
-metaDescription: A Desktop tool for viewing and managing highlights and notes made on Kindle ereaders.
+metaDescription: A Desktop application for viewing and managing highlights and notes made on Kindle ereaders.
 date: "2024-02-02"
-summary: Desktop tool to parse and organize highlights made on Kindle ereaders.
+summary: Desktop application to parse and organize highlights made on Kindle ereaders.
 tags:
   - JavaScript
   - Electron
