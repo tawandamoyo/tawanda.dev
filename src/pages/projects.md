@@ -38,18 +38,26 @@ I am a huge fan of Open Source Software, and I have learnt a lot by contributing
 
 ## Technical Documentation
 
-I am an experienced technical writer who delights in creating clear, accurate, and compliant content for both technical and non-technical audiences. I have written content for different industries including software user guides, hardware guides, API documentation, and in standards. 
+I am an experienced technical writer who delights in creating clear, accurate, and compliant content for both technical and non-technical audiences. I have written content for different domains including web development, hardware, blockchain, artificial intelligence, and web standards. 
+
+### Domain Knowledge
+I have knowledge working and writing in the following domains:
+- Software Development (Full stack, WordPress, APIs)
+- Electronic Engineering
+- Linux
+- Blockchain
+- Artificial Intelligence
+- Web Standards
 
 ### Skills and Tools
 
 - Docs-as-code
-- Diataxis
-- Programming (HTML & CSS, JavaScript)
+- Knowledge of the Diataxis Framework
+- API documentation
+- Programming (HTML & CSS, JavaScript, SQL, Bash)
 - Markdown
 - Linux, Windows
-- Scripting
-- Static Site Generators
-- Content Management Systems
+- Static Site Generators and Content Management Systems (Hugo, Jekyll, WordPress, Ghost etc)
 - Version Management (Git)
 
 ### Work
