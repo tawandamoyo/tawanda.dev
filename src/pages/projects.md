@@ -65,6 +65,6 @@ I have knowledge working and writing in the following domains:
 You can check out some of my documentation work below. 
 
 - [Automatically reply to chat messages using TalkJS webhooks](https://talkjs.com/resources/automatic-reply-chat-webhooks/) #web #networking #api
-- [A Beginner's Guide to ESLint](a-beginners-guide-to-eslint) #tutorial #documentation #javascript
+- [A Beginner's Guide to ESLint](/beginner-guide-to-eslint) #tutorial #documentation #javascript
 - HTML Standard 
   - editorial fixes to the [HTML Living Standard](https://html.spec.whatwg.org/)

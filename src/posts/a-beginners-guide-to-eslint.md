@@ -19,7 +19,7 @@ The guide is aimed at the following audiences:
 
 This guide assumes that you are familiar with the following programming tools/languages:
 
-* basic JavaScript.
+* basic JavaScript
 * Node.js
 * npm/ yarn
 * using the command line
@@ -53,7 +53,7 @@ A good linter like ESLint will free you from focusing on trivial details, force 
 
 ## Installation
 
-Navigate to the root of your project, and if you have not already, initialize it with `npm` or `yarn`:
+Navigate to the root of your project and, if you have not already done so, initialize it with `npm` or `yarn`:
 
 ```bash
 npm init
@@ -65,9 +65,9 @@ This will generate a `package.json` file. Now run:
 npm init @eslint/config
 ```
 
-This will walk you through configuring your ESLint settings. You will be asked about the environment, whether you are using React if you intend to use ESLint for code formatting, and other options.
+This will walk you through configuring your ESLint settings. You will be asked about the environment, whether you are using React, if you intend to use ESLint for code formatting, and other options.
 
-The command will also create `.eslintrc` configuration file in the format you specify, that is, either `js`, `yml` or `json`. The rest of this guide uses a `json` format, but the settings are similar.
+The command will also create a `.eslintrc` configuration file in the format you specify, that is, either `js`, `yml`, or `json`. The rest of this guide uses a `json` format, but the settings are similar.
 
 ## Configuring ESLint
 
@@ -111,7 +111,7 @@ You can specify your preferred environments in the `.eslintrc` configuration fil
 
 ### Rules
 
-By default, ESLint enables some rules for you. Opening the `.eslintrc` configuration file will show the following line:
+By default ESLint enables some rules for you. Opening the `.eslintrc` configuration file will show the following line:
 
 ```json
 // .eslintrc.json
@@ -132,7 +132,7 @@ However, you may want to define your own, or remove the recommended rules altoge
 
 If you want to remove the recommended rules, you can delete the `"extends": "eslint:recommended"` key from the eslint configuration file.
 
-To add new rules you need to edit the `"rules"` key in the configuration file. For example, suppose you decided to follow what is considered good practice and use type-safe equality operators `===` and `!==` instead of `==` and `!=` you would add the [rule](https://eslint.org/docs/latest/rules/eqeqeq) to the configuration file as follows: 
+To add new rules you need to edit the `"rules"` key in the configuration file. For example, suppose you decide to follow what is considered good practice and use type-safe equality operators `===` and `!==` instead of `==` and `!=` you would add the [rule](https://eslint.org/docs/latest/rules/eqeqeq) to the configuration file as follows: 
 
 ```json
 // .eslintrc.js
@@ -171,7 +171,7 @@ npx eslint main.js
 
 This will display any detected errors and warnings in your terminal. A typical ESLint error log is shown below:
 
-
+![eslint error log](/_site/assets/img/error-log.png)
 
 As you can see the log is very informative. It shows you were the error was generated, what rule was violated and also what can be fixed automatically.
 
