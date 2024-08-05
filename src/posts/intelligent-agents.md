@@ -1,6 +1,6 @@
 ---
-title: "Two views of Intelligent Agents from Ancient Greece and China"
-urlPath: "agi-from-ancient-greece-and-china-today"
+title: "Utopia or Apocalypse: The Promise and Perils of AGI from the Ancients to the Present"
+urlPath: "intelligent-agents-ancient-to-present"
 date: "2024-08-02"
 categories: 
   - "ai"
