@@ -12,7 +12,7 @@ eleventyNavigation:
 ## Hardware
 - Dell Latitude 5480
 - Xiaomi phone
-- Kindle Reader 10th Gen
+- Kindle Paperwhite 10th Gen
 
 ## Software
 - Operating System: Ubuntu 22.04
@@ -21,4 +21,4 @@ eleventyNavigation:
 - Communications: Signal, WhatsApp
 - Version Management: Git
 - Browser: Firefox, Chrome, Brave
-- Software IDE: VSCode
+- Software IDE: VSCode, [Cursor](https://cursor.com) an AI-powered fork of VSCode
