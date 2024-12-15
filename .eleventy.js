@@ -41,6 +41,12 @@ module.exports = function (eleventyConfig) {
 
   // Allow Turbolinks to work in development mode
   eleventyConfig.setBrowserSyncConfig(browserSyncConfig);
+  eleventyConfig.addCollection("filteredPosts", function(collectionApi) {
+    return collectionApi.getFilteredByTag("post").filter(function(item) {
+      return !item.data.tags.includes("book quotes");
+    });
+  });
+
 
   return {
     templateFormats: ['md', 'njk', 'html'],
