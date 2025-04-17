@@ -8,7 +8,7 @@ tags:
   - "eslint"
   - "javascript"
 ---
-### Introduction
+## Introduction
 
 This guide introduces [ESLInt](https://eslint.org/), a JavaScript [linting](https://en.wikipedia.org/wiki/Lint_(software)) tool. The aim of this guide is to get you up and running with ESLint in your own projects.
 
