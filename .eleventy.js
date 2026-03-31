@@ -30,6 +30,7 @@ module.exports = function (eleventyConfig) {
 
   // Trigger a build when files in this directory change
   eleventyConfig.addWatchTarget('./src/assets/scss/');
+  eleventyConfig.addWatchTarget('./src/My Clippings.txt');
 
   // Minify HTML output
   eleventyConfig.addTransform('htmlmin', minifyHtml);
