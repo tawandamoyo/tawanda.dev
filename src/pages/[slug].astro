@@ -1,0 +1,121 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { everyPost, postSlug, postDescription, resolveRelated } from '../lib/content';
+
+export async function getStaticPaths() {
+  const posts = await everyPost();
+  return posts.map((post) => ({
+    params: { slug: postSlug(post) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const description = postDescription(post);
+const related = await resolveRelated(post.data.related ?? []);
+
+const dateLong = post.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const wordCount = (post.body ?? '').trim().split(/\s+/).filter(Boolean).length;
+const readMins = Math.max(1, Math.round(wordCount / 200));
+
+// Fragments and TIL notes (book quotes, one-liners) top out around 140 words;
+// real posts start past 180 — 150 sits in the gap between those two clusters.
+const isLong = wordCount >= 150;
+
+// Nest H3s under their preceding H2 so the TOC reads section / subsection,
+// the way brandur.org's does — deeper headings than that would crowd an 11rem rail.
+type TocItem = { slug: string; text: string; children: { slug: string; text: string }[] };
+const tocItems: TocItem[] = [];
+for (const h of headings) {
+  if (h.depth === 2) tocItems.push({ slug: h.slug, text: h.text, children: [] });
+  else if (h.depth === 3 && tocItems.length > 0) {
+    tocItems[tocItems.length - 1].children.push({ slug: h.slug, text: h.text });
+  }
+}
+---
+
+<Base title={`${post.data.title} — Tawanda Moyo`} description={description} ogType="article" wide={isLong}>
+  <article class:list={['post', { 'post-long': isLong }]}>
+    {isLong ? (
+      <Fragment>
+        <h1 class="posttitle">{post.data.title}</h1>
+        <div class="postgrid">
+          <aside class="postmeta-rail">
+            <p class="metalabel mono">Essay</p>
+            <div class="metagrid">
+              <div>
+                <p class="metaklabel mono">Published</p>
+                <p class="metadate">{dateLong}</p>
+              </div>
+              <div>
+                <p class="metaklabel mono">Location</p>
+                <p class="metaloc">Harare</p>
+              </div>
+            </div>
+            <p class="metaread mono">
+              {readMins} min{post.data.revisions ? ` · revised ${post.data.revisions} times` : ''}
+            </p>
+            {post.data.aside && <p class="metaaside">{post.data.aside}</p>}
+          </aside>
+
+          <div class="body prose">
+            <Content />
+          </div>
+
+          {tocItems.length > 0 && (
+            <nav class="toc" aria-label="Table of contents">
+              <p class="toclabel mono">Contents</p>
+              <ol>
+                {tocItems.map((h) => (
+                  <li>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                    {h.children.length > 0 && (
+                      <ol>
+                        {h.children.map((c) => (
+                          <li><a href={`#${c.slug}`}>{c.text}</a></li>
+                        ))}
+                      </ol>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
+        </div>
+      </Fragment>
+    ) : (
+      <Fragment>
+        <header>
+          <h1>{post.data.title}</h1>
+          <p class="postmeta mono">
+            {dateLong}
+            {post.data.tags.length > 0 && ` · ${post.data.tags.slice(0, 2).join(' · ')}`}
+          </p>
+        </header>
+        <div class="body prose">
+          <Content />
+        </div>
+      </Fragment>
+    )}
+    <footer class="postend">
+      <p>
+        If this stirred something — agreement, objection, a thread I should
+        pull — <a href="mailto:moyotawanda@gmail.com">email me</a>. I read
+        everything.
+      </p>
+      {related.length > 0 && (
+        <p class="refs">
+          ↔ {related.map((r, i) => (
+            <Fragment>{i > 0 && ' · '}<a href={r.href}>{r.title}</a></Fragment>
+          ))}
+        </p>
+      )}
+      <p class="refs">
+        <a href="/writing/">More writing</a> · <a href="/feed.xml">Subscribe by RSS</a>
+      </p>
+    </footer>
+  </article>
+</Base>

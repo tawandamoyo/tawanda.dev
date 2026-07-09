@@ -1,0 +1,165 @@
+/* Additive layer for the long-form post template — kept separate from
+   style.css so the existing pages stay byte-for-byte unchanged while this
+   layout is being evaluated. */
+
+@media (min-width: 60rem) {
+  .page-wide { max-width: 62rem; }
+}
+
+.post-long .posttitle {
+  margin-top: 3.5rem;
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.15;
+  text-wrap: balance;
+  max-width: 30rem;
+}
+
+.postgrid {
+  margin-top: 2.75rem;
+  display: grid;
+  grid-template-columns: minmax(0, 38rem);
+  gap: 2.5rem;
+}
+.postgrid > .body { order: 3; }
+.postgrid > .postmeta-rail { order: 1; }
+.postgrid > .toc { order: 2; }
+
+@media (min-width: 60rem) {
+  .postgrid {
+    grid-template-columns: 10rem minmax(0, 36rem) 11rem;
+    align-items: start;
+  }
+  .postgrid > .postmeta-rail { order: initial; }
+  .postgrid > .body { order: initial; }
+  .postgrid > .toc { order: initial; }
+}
+
+.postmeta-rail {
+  padding-top: 0.3rem;
+  border-top: 1px solid var(--hairline);
+}
+@media (min-width: 60rem) {
+  .postmeta-rail {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+.postmeta-rail p { font-size: 0.85rem; }
+.postmeta-rail .metalabel {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  color: var(--faint);
+}
+.postmeta-rail .metadate { margin-top: 0.5rem; }
+.postmeta-rail .metaloc { color: var(--muted); }
+.postmeta-rail .metaread { margin-top: 0.5rem; }
+.postmeta-rail .metaaside {
+  margin-top: 1rem;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.85rem;
+  max-width: 14rem;
+}
+
+.toc {
+  border-top: 1px solid var(--hairline);
+  padding-top: 0.75rem;
+}
+@media (min-width: 60rem) {
+  .toc {
+    border-top: none;
+    padding-top: 0;
+    position: sticky;
+    top: 3rem;
+  }
+}
+.toc .toclabel {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  color: var(--faint);
+  margin-bottom: 0.6rem;
+}
+.toc ol {
+  list-style: decimal;
+  padding-left: 1.1em;
+  font-size: 0.85rem;
+}
+.toc li + li { margin-top: 0.45em; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.diagram {
+  margin-top: 1.5rem;
+}
+.diagram pre {
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+.diagram figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 34rem;
+}
+
+.cite {
+  font-family: var(--mono);
+  font-size: 0.7em;
+  color: var(--accent);
+  text-decoration: none;
+  margin-left: 0.05em;
+  vertical-align: super;
+}
+.cite:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+.references {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline);
+  max-width: 36rem;
+}
+.references .reflabel {
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+}
+.references ol {
+  list-style: none;
+  counter-reset: ref;
+}
+.references li {
+  counter-increment: ref;
+  position: relative;
+  padding-left: 1.7em;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.references li + li { margin-top: 0.85em; }
+.references li::before {
+  content: counter(ref) ".";
+  position: absolute;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+.references .refmain { color: var(--ink); }
+.references .refmain em { color: var(--muted); font-style: italic; }
+.references .refmeta {
+  display: block;
+  margin-top: 0.2em;
+  font-size: 0.72rem;
+}
+.references .refback {
+  margin-left: 0.4em;
+  color: var(--muted);
+  text-decoration: none;
+}
+.references .refback:hover { color: var(--accent); }

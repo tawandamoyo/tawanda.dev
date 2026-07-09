@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+
+# Private working notes, not site content.
+user-profile-2026-07-05.md
+editorial-and-projects-plan.md

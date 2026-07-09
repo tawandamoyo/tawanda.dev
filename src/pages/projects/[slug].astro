@@ -1,0 +1,62 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { allProjects, projectSlug, fmtDate, PROJECT_AREAS, resolveRelated } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const projects = await allProjects();
+  return projects.map((project) => ({
+    params: { slug: projectSlug(project) },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const area = PROJECT_AREAS.find((a) => a.key === project.data.area);
+const related = await resolveRelated(project.data.related ?? []);
+---
+
+<Base title={`${project.data.title} — Tawanda Moyo`} description={project.data.summary} ogType="article">
+  <article class="post">
+    <header>
+      <p class="crumb mono"><a href="/projects/">projects</a> / {area?.label.toLowerCase()}</p>
+      <h1>{project.data.title}</h1>
+      <p class="postmeta mono">
+        {project.data.status === 'live' ? (
+          <span class="live">live</span>
+        ) : project.data.status === 'ongoing' || project.data.status === 'coming' ? (
+          project.data.status
+        ) : (
+          fmtDate(project.data.date)
+        )}
+        {project.data.tags.length > 0 && ` · ${project.data.tags.join(' · ')}`}
+      </p>
+      <p class="lede">{project.data.summary}</p>
+      {project.data.link && (
+        <p class="visit">
+          ↗ <a href={project.data.link}>{new URL(project.data.link).hostname}</a>
+        </p>
+      )}
+    </header>
+    <div class="body prose">
+      <Content />
+    </div>
+    <footer class="postend">
+      <p>
+        Curious about how or why this was built — or want something like it
+        to exist? <a href="mailto:moyotawanda@gmail.com">Email me</a>.
+      </p>
+      {related.length > 0 && (
+        <p class="refs">
+          ↔ {related.map((r, i) => (
+            <Fragment>{i > 0 && ' · '}<a href={r.href}>{r.title}</a></Fragment>
+          ))}
+        </p>
+      )}
+      <p class="refs">
+        <a href="/projects/">All projects</a> · <a href="/#work">Current work</a>
+      </p>
+    </footer>
+  </article>
+</Base>

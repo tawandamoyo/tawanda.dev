@@ -1,0 +1,143 @@
+---
+import Base from '../layouts/Base.astro';
+import { homeEssays, postSlug, fmtDate, postDescription } from '../lib/content';
+
+const essays = await homeEssays();
+const latest = [...essays].sort((a, b) => b.data.date.getTime() - a.data.date.getTime())[0];
+---
+
+<Base includePersonSchema>
+  <div class="intro">
+    <p>
+      For years I have made my living building software and explaining it —
+      websites, tools, documentation. Lately most of my attention has settled
+      on one question: as AI systems grow more powerful, who can see what they can do, wha they
+      run on, and who quietly loses the ability to say no? My answers take the
+      form of essays and public, inspectable artifacts; the current one is the
+      <a href="https://africacomputetracker.org">Africa Compute Tracker</a>,
+      and there will be others.
+    </p>
+    <p>
+      I am not in a hurry about this. I build things, make them public, and
+      write down what I learn.
+    </p>
+  </div>
+
+  {latest && (
+    <p class="latest">
+      <span class="mono">latest</span>
+      <span><a href={`/${postSlug(latest)}/`}>{latest.data.title}</a> — {fmtDate(latest.data.date)}</span>
+    </p>
+  )}
+
+  <section id="work">
+    <h2>Work</h2>
+
+    <div class="entry entry-media" id="w-tracker">
+      <a class="thumb" href="https://africacomputetracker.org" tabindex="-1" aria-hidden="true">
+        <img src="/thumb-tracker.svg" alt="" width="640" height="400" loading="lazy" />
+      </a>
+      <div class="entry-body">
+        <div class="head">
+          <span class="title"><a href="https://africacomputetracker.org">Africa Compute Tracker</a></span>
+          <span class="live">live</span>
+        </div>
+        <p class="what">
+          Tracks AI compute infrastructure across Africa — datacenters, capacity,
+          ownership — as an open research dataset for compute governance.
+        </p>
+        <p class="aside">The data is the easy part. Deciding what should count as “AI compute” is not, and I keep revising it.</p>
+        <p class="refs">↔ <a href="/ai-and-the-web/">AI and the Web</a> · <a href="/now/">methods post underway</a></p>
+      </div>
+    </div>
+
+    <div class="entry" id="w-kindle">
+      <div class="head">
+        <span class="title"><a href="/projects/kindle-highlights-desktop-app/">Kindle Highlights Desktop</a></span>
+        <span class="when mono">2024</span>
+      </div>
+      <p class="what">
+        An Electron app for getting highlights off a Kindle and into plain
+        text, because my notes belong to me.
+      </p>
+    </div>
+
+    <div class="entry" id="w-standards">
+      <div class="head">
+        <span class="title"><a href="/projects/webstandards/">Web standards &amp; open source</a></span>
+        <span class="when mono">ongoing</span>
+      </div>
+      <p class="what">
+        Editorial contributions to the WHATWG HTML Standard, the Matrix
+        protocol website, and Inspect, the UK AI Security Institute’s
+        evaluations framework — plus a TC39 proposal implemented in
+        SpiderMonkey.
+      </p>
+      <p class="refs">↔ <a href="/implementing-javascript-proposal-spidermonkey/">Implementing a TC39 proposal</a></p>
+    </div>
+
+    <div class="entry">
+      <div class="head">
+        <span class="title">Client work</span>
+        <span class="when mono">ongoing</span>
+      </div>
+      <p class="what">
+        Websites and software for organisations — most recently
+        <a href="/projects/leo-edwards-mining/">Leo Edwards Mining</a> and the
+        <a href="/projects/the-living-together-institute-website/">Living Together Institute</a>.
+        This is the trade that funds the rest.
+      </p>
+    </div>
+
+    <p class="allwriting"><a href="/projects/">All projects →</a></p>
+  </section>
+
+  <section id="essays">
+    <h2>Essays</h2>
+
+    {essays.map((post) => (
+      <div class="entry">
+        <div class="head">
+          <span class="title"><a href={`/${postSlug(post)}/`}>{post.data.title}</a></span>
+          <span class="when mono">{fmtDate(post.data.date)}</span>
+        </div>
+        {postDescription(post) && <p class="what">{postDescription(post)}</p>}
+      </div>
+    ))}
+
+    <p class="allwriting"><a href="/writing/">All writing — fragments, notes, and the rest →</a></p>
+  </section>
+
+  <section id="now">
+    <h2>Now</h2>
+    <div class="prose">
+      <p>
+        Watching what happens when AI gets its hands on our tools — browsers,
+        terminals, file systems — and what that leaves in ours.
+        <a href="/now/">The now page has the details →</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="reading">
+    <h2>Reading</h2>
+    <ul class="reading">
+      <li><em>Zhuangzi</em> <span class="by">— trans. Burton Watson, again</span></li>
+      <li><em>The Scout Mindset</em> <span class="by">— Julia Galef</span></li>
+      <li><em>Walden</em> <span class="by">— Henry David Thoreau</span></li>
+    </ul>
+    <p class="allwriting"><a href="/bookshelf/">The bookshelf →</a></p>
+  </section>
+
+  <section id="contact">
+    <div class="prose">
+      <p>
+        If you are working on serious technical problems, useful AI
+        infrastructure, or a future where people use powerful machines
+        without becoming smaller —
+        <a href="mailto:moyotawanda@gmail.com">get in touch</a>. I read
+        everything.
+      </p>
+    </div>
+  </section>
+</Base>

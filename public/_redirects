@@ -1,0 +1,3 @@
+# Old Eleventy-site paths that no longer exist in the Astro redesign.
+/blog/  /writing/  301
+/uses/  /now/      301

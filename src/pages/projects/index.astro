@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import { projectsByArea, projectSlug, fmtDate, PROJECT_AREAS } from '../../lib/content';
+
+const grouped = await projectsByArea();
+---
+
+<Base
+  title="Projects — Tawanda Moyo"
+  description="Deployed systems, open-source and standards contributions, tools, and client work — all of it real and inspectable."
+>
+  <div class="prose" style="margin-top: 3.5rem;">
+    <p>
+      Everything here is real and inspectable — deployed, merged, or shipped.
+      The <a href="/#work">front page</a> keeps the current work; this page
+      keeps all of it.
+    </p>
+  </div>
+
+  {PROJECT_AREAS.map((area) => {
+    const members = grouped.get(area.key);
+    return members ? (
+      <section id={area.key}>
+        <h2>{area.label}</h2>
+        {area.note && <p class="shelfnote">{area.note}</p>}
+
+        {members.map((project) => (
+          <div class="entry">
+            <div class="head">
+              <span class="title">
+                <a href={`/projects/${projectSlug(project)}/`}>{project.data.title}</a>
+              </span>
+              {project.data.status === 'live' ? (
+                <span class="live">live</span>
+              ) : (
+                <span class="when mono">
+                  {project.data.status === 'ongoing' || project.data.status === 'coming'
+                    ? project.data.status
+                    : fmtDate(project.data.date)}
+                </span>
+              )}
+            </div>
+            <p class="what">{project.data.summary}</p>
+            {project.data.link && (
+              <p class="refs">
+                ↗ <a href={project.data.link}>{new URL(project.data.link).hostname}</a>
+              </p>
+            )}
+          </div>
+        ))}
+      </section>
+    ) : null;
+  })}
+</Base>

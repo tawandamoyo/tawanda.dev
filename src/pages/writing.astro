@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { allPosts, archivedPosts, postSlug, fmtDate, isEssay, postDescription } from '../lib/content';
+
+const posts = await allPosts();
+const essays = posts.filter(isEssay);
+const notes = posts.filter((p) => !isEssay(p));
+const archive = await archivedPosts();
+---
+
+<Base
+  title="Writing — Tawanda Moyo"
+  description="Essays on AI, technology, and human agency; notes on books, philosophy, and building things."
+>
+  <section id="essays">
+    <h2>Essays</h2>
+    <p class="shelfnote">The serious explorations — AI, technology, and what people get to keep.</p>
+
+    {essays.map((post) => (
+      <div class="entry">
+        <div class="head">
+          <span class="title"><a href={`/${postSlug(post)}/`}>{post.data.title}</a></span>
+          <span class="when mono">{fmtDate(post.data.date)}</span>
+        </div>
+        {postDescription(post) && <p class="what">{postDescription(post)}</p>}
+      </div>
+    ))}
+  </section>
+
+  <section id="notes">
+    <h2>Notes</h2>
+    <p class="shelfnote">Books, philosophy, projects, fragments — thinking in public, less finished.</p>
+
+    {notes.map((post) => (
+      <div class="entry">
+        <div class="head">
+          <span class="title"><a href={`/${postSlug(post)}/`}>{post.data.title}</a></span>
+          <span class="when mono">
+            {post.data.categories[0] ? `${post.data.categories[0].toLowerCase()} · ` : ''}{fmtDate(post.data.date)}
+          </span>
+        </div>
+        {postDescription(post) && <p class="what">{postDescription(post)}</p>}
+      </div>
+    ))}
+  </section>
+
+  {archive.length > 0 && (
+    <section id="archive">
+      <h2>Archive</h2>
+      <p class="shelfnote">Early dev logs and how-tos, kept for the record.</p>
+      <ul class="archivelist">
+        {archive.map((post) => (
+          <li>
+            <a href={`/${postSlug(post)}/`}>{post.data.title}</a>
+            <span class="when mono">{fmtDate(post.data.date)}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>
