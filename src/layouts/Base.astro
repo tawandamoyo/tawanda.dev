@@ -12,6 +12,8 @@ interface Props {
   wide?: boolean;
   /** Person schema belongs once per crawl path, not on every page — set on / and /about/. */
   includePersonSchema?: boolean;
+  /** Keep the page out of search results — for the 404 page. */
+  noindex?: boolean;
 }
 
 const {
@@ -21,6 +23,7 @@ const {
   publishedTime,
   wide = false,
   includePersonSchema = false,
+  noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -170,7 +173,7 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
     </script>
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
