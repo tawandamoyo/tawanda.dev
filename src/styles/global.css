@@ -13,7 +13,7 @@
 :root[data-phase="dawn"] {
   --ground: #F8F4EC;
   --ink: #262420;
-  --muted: #77716A;
+  --muted: #6C665E;
   --faint: #A39C92;
   --accent: #396B45;
   --hairline: rgba(38, 36, 32, 0.14);
@@ -21,7 +21,7 @@
 :root[data-phase="dusk"] {
   --ground: #F3EFE6;
   --ink: #27231E;
-  --muted: #786F63;
+  --muted: #665F53;
   --faint: #A59A8B;
   --accent: #38663F;
   --hairline: rgba(39, 35, 30, 0.15);
@@ -338,7 +338,7 @@ article.post .body.prose {
 .archivelist a:hover { color: var(--ink); }
 
 .shelfnote {
-  color: var(--faint);
+  color: var(--muted);
   font-size: 0.88rem;
   font-style: italic;
   margin: -1.1rem 0 1.75rem;
@@ -447,7 +447,7 @@ article.post .visit a:hover { text-decoration: underline; text-underline-offset:
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.7rem;
-  color: var(--faint);
+  color: var(--muted);
 }
 .postmeta-rail .metagrid {
   display: grid;
@@ -459,7 +459,7 @@ article.post .visit a:hover { text-decoration: underline; text-underline-offset:
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.62rem;
-  color: var(--faint);
+  color: var(--muted);
 }
 .postmeta-rail .metadate { margin-top: 0.2rem; }
 .postmeta-rail .metaloc { margin-top: 0.2rem; color: var(--muted); }
@@ -482,7 +482,7 @@ article.post .visit a:hover { text-decoration: underline; text-underline-offset:
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.7rem;
-  color: var(--faint);
+  color: var(--muted);
   margin-bottom: 0.6rem;
 }
 .toc > ol { list-style: decimal; padding-left: 1.1em; font-size: 0.85rem; }
