@@ -16,7 +16,7 @@ tags:
 
 In Zimbabwe, EcoCash isn't just another mobile payment system - it's financial infrastructure. Since its launch in 2011, this mobile money service has become the backbone of Zimbabwe's economy, processing millions of transactions in a country where cash shortages and banking challenges have been persistent issues. Given its ubiquity, EcoCash has transcended being merely an app to become an essential utility for Zimbabweans.
 
-![EcoCash Booth](/src/assets/img/EcoCash.jpg)
+![EcoCash Booth](/images/EcoCash.jpg)
 
 EcoCash offers two primary interfaces: the original USSD (Unstructured Supplementary Service Data) menu system accessible from any basic mobile phone, and the more recent smartphone application. While both serve the same fundamental purpose - enabling users to send money, buy airtime, pay bills, and access other financial services - they deliver notably different user experiences, particularly in how they handle one crucial piece of information: your account balance.
 
@@ -40,7 +40,7 @@ This final piece of information is vital. Without any additional steps or costs,
 
 The EcoCash mobile application presents a more modern, graphical interface with colorful icons and a streamlined navigation system. Users log in through biometrics or a PIN and can quickly access various services through the dashboard. However, something important is conspicuously absent: there is no readily visible account balance anywhere on the main screen upon login. Instead you have the currency followed by asterik (\*) placeholders.  
 
-![EcoCash App Dashboard](/src/assets/img/ecocashUI.jpg)
+![EcoCash App Dashboard](/images/ecocashUI.jpg)
 
 To check their balance, app users must typically:
 
@@ -70,7 +70,7 @@ This design choice doesn't just feel inconvenient; it stands in stark contrast t
 
 The EcoCash app's balance handling is an outlier. Whether examining traditional banking apps (like Standard Bank, ABSA, etc.), established fintech services (PayPal, Wise), neobanks (Revolut), or even competing mobile money platforms (InnBucks), the pattern is overwhelmingly clear: account balances are considered essential information, prominently displayed upon login, and updated automatically (or easily refreshed for free).
 
-![Collage of Various Apps](/src/assets/img/collage.jpg)
+![Collage of Various Apps](/images/collage.jpg)
 *Image collage of various apps showing balance visibility*
 
 This global standard sets a strong user expectation. The EcoCash app's deviation creates cognitive dissonance for users interacting with multiple financial services - they must constantly adjust their expectations and interaction models, adding unnecessary mental load.

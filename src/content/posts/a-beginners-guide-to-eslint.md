@@ -172,7 +172,7 @@ npx eslint main.js
 
 This will display any detected errors and warnings in your terminal. A typical ESLint error log is shown below:
 
-![eslint error log](/_site/assets/img/error-log.png)
+![eslint error log](/images/error-log.png)
 
 As you can see the log is very informative. It shows you were the error was generated, what rule was violated and also what can be fixed automatically.
 
