@@ -1,5 +1,5 @@
 ---
-title: Web standards & open source
+title: Open Source Contributions
 emoji: 💾
 metaDescription: Contributions to the WHATWG HTML Standard, the Matrix protocol website, Inspect, and a TC39 proposal implemented in SpiderMonkey.
 date: "2023-03-01"
@@ -10,14 +10,14 @@ tags:
   - Documentation
 area: oss
 status: ongoing
-urlPath: webstandards
+urlPath: open-source
 related:
   - "post:implementing-javascript-proposal-in-firefox"
 ---
 
 ### What this is
 
-Ongoing contributions to codebases and specifications I did not start — my favourite way to learn a system is to land a change in it.
+Ongoing contributions to various codebases and specifications. My favourite way to learn a system is to land a change in it.
 
 - **[WHATWG HTML Standard](https://html.spec.whatwg.org/)** — editorial contributions to the living standard, including MathML-related work.
 - **[Matrix](https://matrix.org)** — contributions to the open protocol's website and documentation.
