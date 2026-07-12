@@ -12,8 +12,6 @@ tags:
   - "wisdom"
   - "ai"
 metaDescription: "What thinkers from Aristotle to the present expected of made minds, and how those old hopes and warnings read now that AGI is a research agenda rather than a myth."
-related:
-  - "post:ai-and-the-web"
 ---
 Like many people I have been playing with generative Large Language Models (LLMs) like ChatGPT, Claude (my favourite), and Gemini. These models write code, produce essays and reports, create PowerPoint presentations, and perform graduate level maths. It is hard not to be impressed by the capabilities of these models, far exceeding what even the most optimistic people predicted five years ago. I have integrated them in my workflow and I think it is folly for any knowledge worker to ignore them. 
 

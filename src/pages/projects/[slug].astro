@@ -17,7 +17,12 @@ const area = PROJECT_AREAS.find((a) => a.key === project.data.area);
 const related = await resolveRelated(project.data.related ?? []);
 ---
 
-<Base title={`${project.data.title} — Tawanda Moyo`} description={project.data.summary} ogType="article">
+<Base
+  title={`${project.data.title} — Tawanda Moyo`}
+  description={project.data.summary}
+  ogType="article"
+  publishedTime={project.data.date}
+>
   <article class="post">
     <header>
       <p class="crumb mono"><a href="/projects/">projects</a> / {area?.label.toLowerCase()}</p>

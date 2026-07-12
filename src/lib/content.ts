@@ -15,7 +15,6 @@ export function postSlug(post: Post): string {
 const HOME_ESSAY_IDS = [
   'ai-chatbot-insecure',
   'ecocash-app-ux-teardown',
-  'ai-and-the-web',
   'observations-vibe-coding',
   'intelligent-agents',
 ];

@@ -12,8 +12,6 @@ tags:
   - "prompt injection"
   
 metaDescription: "A concrete look at brittle AI deployment in everyday systems — a retail chatbot that discusses anything, recommends rivals, and suggests litigation — and what it reveals about responsibility and design."
-related:
-  - "post:ai-and-the-web"
 ---
 
 While shopping for some household items, I asked Tina*, their chatbot, what to do about a faulty product that the manager had refused to take back. The bot helpfully provided me with a complaints form and a link to their returns policy. 

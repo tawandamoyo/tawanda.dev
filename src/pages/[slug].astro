@@ -37,7 +37,13 @@ for (const h of headings) {
 }
 ---
 
-<Base title={`${post.data.title} — Tawanda Moyo`} description={description} ogType="article" wide={isLong}>
+<Base
+  title={`${post.data.title} — Tawanda Moyo`}
+  description={description}
+  ogType="article"
+  publishedTime={post.data.date}
+  wide={isLong}
+>
   <article class:list={['post', { 'post-long': isLong }]}>
     {isLong ? (
       <Fragment>

@@ -6,20 +6,16 @@ const essays = await homeEssays();
 const latest = [...essays].sort((a, b) => b.data.date.getTime() - a.data.date.getTime())[0];
 ---
 
-<Base includePersonSchema>
+<Base
+  description="Software engineer and writer in Harare building public tools and research on AI compute, evaluations, forecasting, and human agency."
+  includePersonSchema
+>
   <div class="intro">
     <p>
-      For years I have made my living building software and explaining it —
-      websites, tools, documentation. Lately most of my attention has settled
-      on one question: as AI systems grow more powerful, who can see what they can do, wha they
-      run on, and who quietly loses the ability to say no? My answers take the
-      form of essays and public, inspectable artifacts; the current one is the
-      <a href="https://africacomputetracker.org">Africa Compute Tracker</a>,
-      and there will be others.
+      I am a software engineer and writer. I build tools and infrastructure for understanding AI systems, and think about how to deploy them in a beneficial manner.
     </p>
     <p>
-      I am not in a hurry about this. I build things, make them public, and
-      write down what I learn.
+      I am currently most interested in making sense of widespread machine intelligence — evaluations, forecasting, verification — and the slower question of how to preserve human agency as machines get more capable and are deployed at scale.
     </p>
   </div>
 
@@ -46,8 +42,8 @@ const latest = [...essays].sort((a, b) => b.data.date.getTime() - a.data.date.ge
           Tracks AI compute infrastructure across Africa — datacenters, capacity,
           ownership — as an open research dataset for compute governance.
         </p>
-        <p class="aside">The data is the easy part. Deciding what should count as “AI compute” is not, and I keep revising it.</p>
-        <p class="refs">↔ <a href="/ai-and-the-web/">AI and the Web</a> · <a href="/now/">methods post underway</a></p>
+        <p class="aside">What counts as AI compute? What are the consequences of datacenters? What does it mean for the countries that host them? </p>
+        <p class="refs">↔ <a href="/now/">methods post underway</a></p>
       </div>
     </div>
 
@@ -73,7 +69,7 @@ const latest = [...essays].sort((a, b) => b.data.date.getTime() - a.data.date.ge
         evaluations framework — plus a TC39 proposal implemented in
         SpiderMonkey.
       </p>
-      <p class="refs">↔ <a href="/implementing-javascript-proposal-spidermonkey/">Implementing a TC39 proposal</a></p>
+      <p class="refs">↔ <a href="/implementing-javascript-proposal-in-firefox/">Implementing a TC39 proposal</a></p>
     </div>
 
     <div class="entry">
@@ -85,7 +81,7 @@ const latest = [...essays].sort((a, b) => b.data.date.getTime() - a.data.date.ge
         Websites and software for organisations — most recently
         <a href="/projects/leo-edwards-mining/">Leo Edwards Mining</a> and the
         <a href="/projects/the-living-together-institute-website/">Living Together Institute</a>.
-        This is the trade that funds the rest.
+        This is the day to day work that keeps the lights on. 
       </p>
     </div>
 
@@ -112,9 +108,8 @@ const latest = [...essays].sort((a, b) => b.data.date.getTime() - a.data.date.ge
     <h2>Now</h2>
     <div class="prose">
       <p>
-        Watching what happens when AI gets its hands on our tools — browsers,
-        terminals, file systems — and what that leaves in ours.
-        <a href="/now/">The now page has the details →</a>
+        Tracking AI Compute in Africa, thinking about autonomy and truth in the AI age, and learning more about the mechanics of cooperation, and how AI turns many of the old ideas about cooperation on their head. 
+        <a href="/now/">More on the now page →</a>
       </p>
     </div>
   </section>
@@ -136,7 +131,7 @@ const latest = [...essays].sort((a, b) => b.data.date.getTime() - a.data.date.ge
         infrastructure, or a future where people use powerful machines
         without becoming smaller —
         <a href="mailto:moyotawanda@gmail.com">get in touch</a>. I read
-        everything.
+        every email.
       </p>
     </div>
   </section>

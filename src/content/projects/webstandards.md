@@ -12,7 +12,7 @@ area: oss
 status: ongoing
 urlPath: webstandards
 related:
-  - "post:implementing-proposal-spidermonkey"
+  - "post:implementing-javascript-proposal-in-firefox"
 ---
 
 ### What this is
@@ -23,4 +23,4 @@ Ongoing contributions to codebases and specifications I did not start — my fav
 - **[Matrix](https://matrix.org)** — contributions to the open protocol's website and documentation.
 - **[Inspect](https://inspect.aisi.org.uk/)** — contributions to the UK AI Security Institute's open-source evaluations framework.
 - **[PolicyEngine](https://policyengine.org)** — contribution to the open-source tax-and-benefit microsimulation platform.
-- **SpiderMonkey** — [implemented a TC39 proposal](/implementing-javascript-proposal-spidermonkey/) in Firefox's JavaScript engine.
+- **SpiderMonkey** — [implemented a TC39 proposal](/implementing-javascript-proposal-in-firefox/) in Firefox's JavaScript engine.

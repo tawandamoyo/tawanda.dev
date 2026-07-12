@@ -12,7 +12,6 @@ area: field
 status: live
 link: https://africacomputetracker.org
 related:
-  - "post:ai-and-the-web"
   - "post:intelligent-agents"
 ---
 
