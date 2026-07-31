@@ -46,6 +46,8 @@ const grouped = await projectsByArea();
             )}
           </div>
         ))}
+
+        {area.close && <p class="shelfnote">{area.close}</p>}
       </section>
     ) : null;
   })}

@@ -13,6 +13,7 @@ export function postSlug(post: Post): string {
  * Curation is an editorial act: this list is the one place it happens.
  */
 const HOME_ESSAY_IDS = [
+  'real-time-gradual-disempowerment',
   'ai-chatbot-insecure',
   'ecocash-app-ux-teardown',
   'observations-vibe-coding',
@@ -51,9 +52,24 @@ export async function allProjects(): Promise<Project[]> {
  * Shelves for the projects page, in the order they appear.
  * Client work last, deliberately — it is the trade that funds the rest.
  */
-export const PROJECT_AREAS: { key: Project['data']['area']; label: string; note?: string }[] = [
+export const PROJECT_AREAS: {
+  key: Project['data']['area'];
+  label: string;
+  note?: string;
+  /** Closing line under the shelf — for shelves that read as a sequence rather than a list. */
+  close?: string;
+  /** Oldest first: the reading shelf is a progression, and progressions read forwards. */
+  chronological?: boolean;
+}[] = [
   { key: 'field', label: 'In the field', note: 'Systems deployed for real people and real institutions.' },
   { key: 'oss', label: 'Standards & open source', note: 'Changes landed in codebases and specifications I did not start.' },
+  {
+    key: 'reading',
+    label: 'Reading infrastructure · 2021–present',
+    note: 'One corpus, five years: 14,257 highlights and notes from 299 books, 2019–2025.',
+    close: 'Extraction → organisation → retrieval. Each layer only became worth building once the one beneath it was solid.',
+    chronological: true,
+  },
   { key: 'tools', label: 'Tools & experiments', note: 'Built to learn something, or because I wanted the tool to exist.' },
   { key: 'client', label: 'Client work', note: 'The trade that funds the rest.' },
 ];
@@ -63,6 +79,7 @@ export async function projectsByArea(): Promise<Map<string, Project[]>> {
   const grouped = new Map<string, Project[]>();
   for (const area of PROJECT_AREAS) {
     const members = all.filter((p) => p.data.area === area.key);
+    if (area.chronological) members.reverse();
     if (members.length > 0) grouped.set(area.key, members);
   }
   return grouped;
@@ -81,8 +98,15 @@ export function fmtDate(d: Date): string {
   return d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
 }
 
+export type PostKind = 'essay' | 'fragment' | 'note';
+
+/** Explicit form wins; migrated homepage essays retain their curated classification. */
+export function postKind(post: Post): PostKind {
+  return post.data.kind ?? (HOME_ESSAY_IDS.includes(post.id) ? 'essay' : 'note');
+}
+
 export function isEssay(post: Post): boolean {
-  return HOME_ESSAY_IDS.includes(post.id);
+  return postKind(post) === 'essay';
 }
 
 /** One-sentence summary for lists and meta tags; legacy posts used either key. */

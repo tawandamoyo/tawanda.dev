@@ -12,9 +12,9 @@ const posts = defineCollection({
       categories: z.array(z.string()).default([]),
       tags: z.array(z.string()).default([]),
       archive: z.boolean().default(false),
-      // Metadata rail + sticky table of contents are shown automatically on
-      // posts past a length threshold (see isLong in [slug].astro) — fragments
-      // and TIL notes stay on the plain template.
+      // Editorial form controls classification and article presentation.
+      // Optional so migrated posts can fall back to the existing curation.
+      kind: z.enum(['essay', 'fragment', 'note']).optional(),
       aside: z.string().optional(),
       revisions: z.number().optional(),
       // Hand-curated onward links, "post:<id>" or "project:<id>" — see resolveRelated.
@@ -33,7 +33,7 @@ const projects = defineCollection({
       tags: z.array(z.string()).default([]),
       emoji: z.string().optional(),
       // Which shelf of the projects page this sits on.
-      area: z.enum(['field', 'oss', 'client', 'tools']).default('tools'),
+      area: z.enum(['field', 'oss', 'reading', 'client', 'tools']).default('tools'),
       // 'live' gets the green dot; other states stay quiet.
       status: z.enum(['live', 'ongoing', 'coming', 'done']).default('done'),
       // Where the thing itself lives, when it is public.

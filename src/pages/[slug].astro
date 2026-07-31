@@ -1,7 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { everyPost, postSlug, postDescription, resolveRelated } from '../lib/content';
+import { everyPost, postSlug, postDescription, postKind, resolveRelated } from '../lib/content';
 
 export async function getStaticPaths() {
   const posts = await everyPost();
@@ -20,10 +20,9 @@ const dateLong = post.data.date.toLocaleDateString('en-GB', { day: 'numeric', mo
 
 const wordCount = (post.body ?? '').trim().split(/\s+/).filter(Boolean).length;
 const readMins = Math.max(1, Math.round(wordCount / 200));
-
-// Fragments and TIL notes (book quotes, one-liners) top out around 140 words;
-// real posts start past 180 — 150 sits in the gap between those two clusters.
-const isLong = wordCount >= 150;
+const kind = postKind(post);
+const kindLabel = kind.charAt(0).toUpperCase() + kind.slice(1);
+const isEssayLayout = kind === 'essay';
 
 // Nest H3s under their preceding H2 so the TOC reads section / subsection,
 // the way brandur.org's does — deeper headings than that would crowd an 11rem rail.
@@ -42,15 +41,15 @@ for (const h of headings) {
   description={description}
   ogType="article"
   publishedTime={post.data.date}
-  wide={isLong}
+  wide={isEssayLayout}
 >
-  <article class:list={['post', { 'post-long': isLong }]}>
-    {isLong ? (
+  <article class:list={['post', { 'post-long': isEssayLayout }]}>
+    {isEssayLayout ? (
       <Fragment>
         <h1 class="posttitle">{post.data.title}</h1>
         <div class="postgrid">
           <aside class="postmeta-rail">
-            <p class="metalabel mono">Essay</p>
+            <p class="metalabel mono">{kindLabel}</p>
             <div class="metagrid">
               <div>
                 <p class="metaklabel mono">Published</p>
@@ -97,7 +96,7 @@ for (const h of headings) {
         <header>
           <h1>{post.data.title}</h1>
           <p class="postmeta mono">
-            {dateLong}
+            {kindLabel} · {dateLong}
             {post.data.tags.length > 0 && ` · ${post.data.tags.slice(0, 2).join(' · ')}`}
           </p>
         </header>
