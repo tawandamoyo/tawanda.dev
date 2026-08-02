@@ -2,6 +2,7 @@
 title: "Utopia or Apocalypse: The Promise and Perils of AGI from the Ancients to the Present"
 urlPath: "intelligent-agents-ancient-to-present"
 date: "2024-08-02"
+kind: essay
 categories: 
   - "ai"
 tags: 

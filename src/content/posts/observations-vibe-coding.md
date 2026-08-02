@@ -2,6 +2,7 @@
 title: "Observations on Vibe Coding"
 urlPath: "on-vibe-coding"
 date: "2025-03-31"
+kind: essay
 categories: 
   - "ai"
 tags: 

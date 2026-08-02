@@ -4,6 +4,7 @@ description: "A deep dive into the user experience of the EcoCash app, focusing 
 summary: "On the EcoCash app's UX, particularly its approach to balance visibility, and recommendations for improvement."
 urlPath: "ecocash-app-ux-teardown"
 date: "2025-04-23"
+kind: essay
 categories: 
   - "technical writing"
   - "user experience"

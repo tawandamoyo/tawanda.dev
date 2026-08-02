@@ -2,6 +2,7 @@
 title: "I Asked a Retailer's Chatbot What to Do About a Complaint. It Told Me to Sue Them."
 urlPath: "ai-chatbot-insecure-zimbabwe"
 date: "2026-03-30"
+kind: essay
 categories: 
   - "ai"
 tags: 
