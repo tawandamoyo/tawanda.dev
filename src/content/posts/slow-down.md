@@ -9,7 +9,7 @@ tags:
 ---
 When doing challenging things we sometimes get stuck. Often the instinct is to quit, or rush over the difficult parts. I think this is the wrong approach.
 
-I've found that a more useful approach is to take it slow, pay attention, and focus on [systems not goals](https://tawanda.dev/posts/systems-over-goals/). It is in these difficult moments, when we are stretched to our limits, that the greatest learning and insights occur.
+I've found that a more useful approach is to take it slow, pay attention, and focus on [systems not goals](/systems-over-goals/). It is in these difficult moments, when we are stretched to our limits, that the greatest learning and insights occur.
 
 One of my favorite stories on mastery comes from the Chuangzi. It is the story of Cook Ting, a master chef who cuts up an ox with such mastery that everyone is astounded.
 

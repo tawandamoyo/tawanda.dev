@@ -28,7 +28,7 @@ xrandr --addmode VGA-1 1920x1080_60.00
 
 ```
 
-The program is simply [the commands I ran in the last tutorial](https://tawanda.dev/fixing-monitor-resolution-on-ubuntu/) with the exception of the first line. I ommitted the cvt command because I already know the modeline of the display I need.
+The program is simply [the commands I ran in the last tutorial](/fixing-monitor-resolution/) with the exception of the first line. I ommitted the cvt command because I already know the modeline of the display I need.
 
 Those familiar with other programming languages might (correctly) guess that the pound symbol, #, implies a comment in Shell, as it is in Python and other languages. It does, except when it is the first line of the program, and is followed by !. In this case it means that the program is to be executed by the Shell. Similarly a program to be run by Python might have #! /usr/bin/python as a first line.
 

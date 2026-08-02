@@ -12,7 +12,7 @@ archive: true
 > 
 > J. R. R. Tolkien, foreword to Lord of The Rings
 
-I recently went back to my Kindle Tool, ([Part 1](https://tawanda.dev/kindle-highlights-tool/), [Part 2](https://tawanda.dev/kindle-highlights-tool-2/)) to try and add more features. I wanted to have to automatically create txt files so I could easily review the highlights.
+I recently went back to my Kindle Tool, ([Part 1](/kindle-highlights-tool/), [Part 2](/kindle-highlights-tool-2/)) to try and add more features. I wanted to have to automatically create txt files so I could easily review the highlights.
 
 Firstly I needed to make the a new folder called books to hold all the books. Using fs.mkdir, (and StackOveflow) this was pretty straightforward:
 

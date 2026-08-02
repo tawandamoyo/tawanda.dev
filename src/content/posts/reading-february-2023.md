@@ -11,7 +11,7 @@ tags:
   - "luck"
 ---
 
-Previously [January 2023](https://tawanda.dev/reading-january-2023)
+Previously [January 2023](/reading-january-2023/)
 
 Here is what I read last month (February):
 

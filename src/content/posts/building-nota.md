@@ -9,7 +9,7 @@ categories:
   - "electron"
 ---
 
-I've previously [written](https://tawanda.dev/posts/2020-08-10-building-my-first-app-a-kindle-reader-highlights-extractor-part-1/) about the simple [JavaScript script]  I wrote which organizes  highlights and notes made on Kindle ereaders. It's on [Github](https://github.com/tawandamoyo/KindleKlipper).
+I've previously [written](/kindle-highlights-tool/) about the simple [JavaScript script]  I wrote which organizes  highlights and notes made on Kindle ereaders. It's on [Github](https://github.com/tawandamoyo/KindleKlipper).
 
 I use the script a lot but I must admit that it's not user friendly. I recently had to use it and I almost wept - there was no easy way to specify the file to be loaded, and very sparse instructions or explanations.
 
