@@ -1,25 +1,35 @@
 ---
-title: Kindle Highlights CLI tool
+title: Nota CLI
 emoji: 💾
-metaDescription: A Node JS CLI tool for extracting and parsing highlights and notes made on Kindle ereaders.
+metaDescription: A Node.js CLI for extracting and parsing highlights and notes made on Kindle ereaders.
 date: "2023-03-02"
-summary: CLI tool to parse and organize highlights made on Kindle ereaders.
+summary: A Node.js CLI that parses a Kindle's clippings file into a folder of Markdown.
 tags:
   - Node.js
   - cli
   - kindle
   - commander
-area: tools
+area: reading
+urlPath: kindle-highlights-cli-tool
+related:
+  - "project:kindle-highlights-desktop-app"
 ---
 
 ### Problem
+You create highlights and notes while reading on Kindle, and then what? The file containing the highlights is just one long `My Clippings.txt` file. What if you want all the clippings from one book in their own file, or to see random highlights? 
 
-Many people who do their reading on Kindle e-readers often highlight parts of the text and also take notes. I wanted a way of sorting these highlights into files of individual books.
 
 ### Solution
 
-I made a simple Command Line Interface (CLI) tool using Node.js and the Commander library to parse commands. The tool takes in the kindle highlights file, typically named `My Clippings.txt` and found in the `/Documents` folder of the Kindle, and returns a folder of books in Markdown files.
+A Command Line Interface built with Node.js and the Commander library. It takes the Kindle's `My Clippings.txt` and returns a folder of books as Markdown files. It can also pull a random highlight into the terminal.
 
-The tool can also be used to get (a) random highlight(s) from the terminal.
+[Nota Desktop](/projects/kindle-highlights-desktop-app/) is the desktop app version. 
 
 [Github](https://github.com/tawandamoyo/kindle-tool-cli)
+
+### How it got here
+
+This started in 2020 as a first attempt at building anything at all, written up as it went:
+[Part 1](/kindle-highlights-tool/) — the clippings format and a plan;
+[Part 2](/kindle-highlights-tool-2/) — parsing the file into books;
+[Part 3](/kindle-highlights-tool-3/) — writing each book out to its own file.
