@@ -1,9 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
-import { homeEssays, postSlug, fmtDate, postDescription } from '../lib/content';
+import { allPosts, homeEssays, postSlug, postKind, fmtDate, postDescription } from '../lib/content';
 
 const essays = await homeEssays();
-const latest = [...essays].sort((a, b) => b.data.date.getTime() - a.data.date.getTime())[0];
+// Genuinely the newest thing published, not the newest of the featured five —
+// otherwise the homepage keeps announcing a stale post as "latest".
+const latest = (await allPosts())[0];
 ---
 
 <Base
@@ -21,7 +23,7 @@ const latest = [...essays].sort((a, b) => b.data.date.getTime() - a.data.date.ge
 
   {latest && (
     <p class="latest">
-      <span class="mono">latest</span>
+      <span class="mono">latest {postKind(latest)}</span>
       <span><a href={`/${postSlug(latest)}/`}>{latest.data.title}</a> — {fmtDate(latest.data.date)}</span>
     </p>
   )}

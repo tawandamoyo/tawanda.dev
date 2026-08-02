@@ -9,8 +9,12 @@ export function postSlug(post: Post): string {
 }
 
 /**
- * Home-surface essays, newest first — the serious explorations.
- * Curation is an editorial act: this list is the one place it happens.
+ * Home-surface essays, in the order they appear — the serious explorations.
+ * Curation is an editorial act: this list is the one place it happens, and
+ * the order is editorial too, so it is a ranking rather than a filter.
+ *
+ * Featuring only. Classification lives in each post's `kind`, so removing an
+ * entry here de-features it without silently demoting it to a note.
  */
 const HOME_ESSAY_IDS = [
   'real-time-gradual-disempowerment',
