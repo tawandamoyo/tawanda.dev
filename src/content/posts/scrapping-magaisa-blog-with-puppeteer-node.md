@@ -8,26 +8,46 @@ tags:
   - "node.js"
   - "puppeteer"
   - "web-scrapping"
-archive: true
+kind: note
+metaDescription: "Saving 436 posts by the late Alex Magaisa in case the domain lapsed. It did — the site is gone and the domain now belongs to someone else."
+aside: "The blog went offline in 2024 and the domain was taken over. This scrape is now one of two known copies."
 ---
 
-I have been writing a Node.js scrapper to download blog posts on the website of the late Zimbabwean academic [Dr Alex Magaisa](https://bigsr.africa). I worried that one day the domain and or hosting might expire and we would lose such important, thoughtful, and well written material. I also felt that it would also be my own small contribution to keeping the legacy of that brilliant man alive.
+> **Update, August 2026.** The thing I was worried about happened. The Big Saturday
+> Read went offline, the last good capture in the Internet Archive is from April 2024, 
+> and `bigsr.africa` has since been picked up by someone else, who now redirects it to a
+> counterfeit clothing storefront. Every link and citation pointing at that domain is
+> broken, and the ones in this post now go to the Internet Archive instead.
+>
+> The folder I made in 2022 holds **436 posts**. (This post says the scraper
+> opened 438 pages, which it did though two must have failed quietly, because my error
+> handling only logged and moved on.) A friend read this post in 2022 and ran their own
+> scrape; their copy has 435, and the two agree on 435 of them.
+>
+> There are **26 more** of his posts recoverable from the Internet Archive that neither
+> of us caught, mostly guest contributions and posts filed under a different byline,
+> which the author-page shortcut below could never have seen. Consolidating all of it
+> into one verified archive is now its own project.
+>
+> I have left the rest of this post exactly as I wrote it in 2022.
+
+I have been writing a Node.js scrapper to download blog posts on the website of the late Zimbabwean academic [Dr Alex Magaisa](https://en.wikipedia.org/wiki/Alex_Magaisa). I worried that one day the domain and or hosting might expire and we would lose such important, thoughtful, and well written material. I also felt that it would also be my own small contribution to keeping the legacy of that brilliant man alive.
 
 My goal was to get all the posts he wrote and save them as either plaintext files or PDFs.
 
 ## Planning
 
-The blog I intended to scrap lives at [https://bigsr.africa](https://bigsr.africa) and is a WordPress site. I googled around a bit and because I am a JavaScript person I decided to scrap the site using Puppeteer which is a Node.js library which provides an API to control Chrome or Chromium. In other words Puppeteer allows us to control a browser with code.
+The blog I intended to scrap lives at [https://bigsr.africa](https://web.archive.org/web/2022/https://bigsr.africa/) and is a WordPress site. I googled around a bit and because I am a JavaScript person I decided to scrap the site using Puppeteer which is a Node.js library which provides an API to control Chrome or Chromium. In other words Puppeteer allows us to control a browser with code.
 
 Puppeteer can do most of the things that a human can manually do in the browser including generating screenshots and PDFs of pages, crawling pages, submitting forms and testing Chrome extensions.
 
 It is important when scrapping a website to visit it and look at how the content is structured. My plan was to get all the links to the posts, store them in an array and the loop through the array opening each link one by one and saving the post as a pdf.
 
-All the articles on the website can be found on [https://bigsr.africa/articles](https://bigsr.africa/articles). However there is a challenge. The website uses infinite scroll, which means when you reach the bottom of that page it loads more content and continues like that until there is no more content to load.
+All the articles on the website can be found on [https://bigsr.africa/articles](https://web.archive.org/web/2022/https://bigsr.africa/articles/). However there is a challenge. The website uses infinite scroll, which means when you reach the bottom of that page it loads more content and continues like that until there is no more content to load.
 
 Since Puppeteer more or less simulates real browser interaction, it is possible to make it scroll to the bottom of a page, wait for a set time and then scroll again, as a real user might, and I found some interesting implementations on StackOverflow. However the site sometimes didn't finish loading the infinite scroll so I decided to look for another option.
 
- Fortunately there is an authors page which shows all posts written by a particular author. On Dr Magaisa's blog this is at https://bigsr.africa/author/dr-alex-magaisa. There  are also four other contributors, but they only had a post  each and could be handled separately.
+ Fortunately there is an authors page which shows all posts written by a particular author. On Dr Magaisa's blog this is at [https://bigsr.africa/author/dr-alex-magaisa](https://web.archive.org/web/2022/https://bigsr.africa/author/dr-alex-magaisa/). There  are also four other contributors, but they only had a post  each and could be handled separately.
 
 ## Project Setup
 
