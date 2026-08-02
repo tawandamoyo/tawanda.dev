@@ -4,7 +4,8 @@ urlPath: "right-tools-better-web"
 date: "2021-03-15"
 categories: 
   - "software-development"
-archive: true
+kind: essay
+metaDescription: "A wasted afternoon debugging WordPress, and how an increasingly bloated web costs the people on the slowest phones and the slowest connections."
 ---
 
 Today I had to deploy a quick landing page for a client. I opted to use WordPress because I thought it would take the shortest time. Mistake.
