@@ -22,6 +22,7 @@ const related = await resolveRelated(project.data.related ?? []);
   description={project.data.summary}
   ogType="article"
   publishedTime={project.data.date}
+  ogImage={`/og/projects/${projectSlug(project)}.png`}
 >
   <article class="post">
     <header>

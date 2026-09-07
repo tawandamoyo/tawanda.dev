@@ -41,6 +41,7 @@ for (const h of headings) {
   description={description}
   ogType="article"
   publishedTime={post.data.date}
+  ogImage={`/og/posts/${postSlug(post)}.png`}
   wide={isEssayLayout}
 >
   <article class:list={['post', { 'post-long': isEssayLayout }]}>
