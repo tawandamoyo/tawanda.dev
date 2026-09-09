@@ -1,5 +1,5 @@
 ---
-title: "I Asked a Retailer's Chatbot What to Do About a Complaint. It Told Me to Sue Them."
+title: "I Asked a Retailer's Chatbot What to Do About a Complaint. It Told Me to Sue."
 urlPath: "ai-chatbot-insecure-zimbabwe"
 date: "2026-03-30"
 kind: essay
@@ -12,7 +12,7 @@ tags:
   - "zimbabwe"
   - "prompt injection"
   
-metaDescription: "A concrete look at brittle AI deployment in everyday systems — a retail chatbot that discusses anything, recommends rivals, and suggests litigation — and what it reveals about responsibility and design."
+metaDescription: "A retail chatbots recommends taking legal action against the company. A look at how brittle AI deployments can be, and some solutions"
 ---
 
 While shopping for some household items, I asked Tina*, their chatbot, what to do about a faulty product that the manager had refused to take back. The bot helpfully provided me with a complaints form and a link to their returns policy. 
@@ -94,6 +94,3 @@ A weak system prompt says, "_You are Tina, a helpful assistant for JJ's Electron
 Tina is still live as I write this, burning through tokens, happily discussing any topic thrown at her,  recommending rival products, and occasionally suggesting litigation. So are most of the other chatbots I looked at. 
 
 Given that chatbots are becoming an increasingly popular way for customers to interact with businesses, they must be carefully designed so that they promote your business instead of harming it. 
-
----
-_Are you a developer or business deploying AI solutions? Reach out for a professional audit or consultation -- before someone else finds what I found._ 

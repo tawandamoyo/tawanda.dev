@@ -10,7 +10,7 @@ tags:
   - "programming"
   - "gemini"
   - "claude"
-metaDescription: "Field notes from building an entire site by prompting alone — where the model shines, where it quietly goes wrong, and what the craft still demands of you."
+metaDescription: "Some thoughts on building software through prompting alone."
 related:
   - "post:ai-chatbot-insecure"
 ---
