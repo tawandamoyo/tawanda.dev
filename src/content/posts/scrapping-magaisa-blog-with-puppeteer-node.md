@@ -9,7 +9,7 @@ tags:
   - "puppeteer"
   - "web-scrapping"
 kind: note
-metaDescription: "Saving 436 posts by the late Alex Magaisa in case the domain lapsed. It did — the site is gone and the domain now belongs to someone else."
+metaDescription: "Saving 436 posts by the late Alex Magaisa in case the domain lapsed. (It did, eventually, the site is gone and the domain now belongs to someone else."
 aside: "The blog went offline in 2024 and the domain was taken over. This scrape is now one of two known copies."
 ---
 

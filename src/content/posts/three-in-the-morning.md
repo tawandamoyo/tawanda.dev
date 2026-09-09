@@ -3,7 +3,7 @@ title: "Three in the Morning"
 urlPath: "three-in-the-morning"
 date: "2026-07-31"
 kind: "fragment"
-description: "A short reflection on waiting, impatience, and a parable from the Zhuangzi."
+description: "A short reflection on patience, waiting, and Zhuangzi on the sameness of things"
 categories:
   - "books"
 tags:

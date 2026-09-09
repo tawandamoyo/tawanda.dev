@@ -29,7 +29,7 @@ A Command Line Interface built with Node.js and the Commander library. It takes 
 
 ### How it got here
 
-This started in 2020 as a first attempt at building anything at all, written up as it went:
-[Part 1](/kindle-highlights-tool/) — the clippings format and a plan;
-[Part 2](/kindle-highlights-tool-2/) — parsing the file into books;
-[Part 3](/kindle-highlights-tool-3/) — writing each book out to its own file.
+This started in 2020 as a first attempt at building something useful, written up as it went:
+[Part 1](/kindle-highlights-tool/) - the clippings format and a plan;
+[Part 2](/kindle-highlights-tool-2/) - parsing the file into books;
+[Part 3](/kindle-highlights-tool-3/) - writing each book out to its own file.

@@ -14,7 +14,7 @@ link: https://talkjs.com/resources/author/tawanda/
 
 ### What this is
 
-Developer-facing tutorials written as a Technical Writer at TalkJS, a Dutch chat-API startup — practical, implementation-focused guides for building with their JavaScript SDK.
+Developer-facing tutorials written as a Technical Writer at TalkJS, a Dutch chat-API startup - practical, implementation-focused guides for building with their JavaScript SDK.
 
 - **[Automatically reply to chat messages using TalkJS webhooks](https://talkjs.com/resources/automatic-reply-chat-webhooks/)**
 - **[Create a chat feature with a contact list by using TalkJS](https://talkjs.com/resources/chat-contact-list/)**
