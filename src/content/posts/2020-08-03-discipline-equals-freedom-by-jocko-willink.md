@@ -2,6 +2,8 @@
 title: "Discipline Equals Freedom by Jocko Willink"
 urlPath: "discipline-equals-freedom-jocko-willink"
 date: "2020-08-03"
+kind: "note"
+description: "Notes from Jocko Willink's Discipline Equals Freedom"
 categories: 
   - "books"
 tags: 

@@ -1,6 +1,8 @@
 ---
 title: "Slow Down"
 date: "2022-08-30"
+description: "What Zhuang Zi's Cook Ting teaches us about mastery, and dealing with complicated problems"
+kind: "note"
 categories: 
   - "life"
 tags: 

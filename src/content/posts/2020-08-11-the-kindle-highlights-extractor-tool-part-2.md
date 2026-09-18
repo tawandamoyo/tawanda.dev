@@ -2,6 +2,8 @@
 title: "The Kindle Highlights Extractor tool (Part 2)"
 urlPath: "kindle-highlights-tool-2"
 date: "2020-08-11"
+description: "Part 2 of building an application to organise Kindle highlights and notes"
+kind: "note"
 categories: 
   - "software-development"
 tags: 

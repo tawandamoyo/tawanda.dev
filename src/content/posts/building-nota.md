@@ -2,6 +2,7 @@
 title: "Building Nota- An Open Source Desktop Application for Managing Kindle Highlights and Notes"
 urlPath: "building-nota-electron-desktop-app"
 date: "2021-09-01"
+description: "On expanding my kindle highlights tool to become a desktop app"
 categories: 
   - "learning"
   - "building"

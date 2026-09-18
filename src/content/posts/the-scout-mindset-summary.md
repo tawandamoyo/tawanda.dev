@@ -2,6 +2,8 @@
 title: "The Scout Mindset by Julia Galef (Summary)"
 urlPath: "the-scout-mindset-summary"
 date: "2022-03-14"
+description: "Notes on Julia Galef's The Scout Mindset"
+kind: "note"
 categories: 
   - "books"
 tags: 

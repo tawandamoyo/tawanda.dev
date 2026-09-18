@@ -1,6 +1,8 @@
 ---
 title: "Systems over goals"
 date: "2022-02-15"
+description: "Systems matter more than goals"
+kind: "note"
 categories: 
   - "life"
   - "books"

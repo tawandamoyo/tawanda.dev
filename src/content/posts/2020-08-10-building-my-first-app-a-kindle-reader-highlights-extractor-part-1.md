@@ -2,6 +2,8 @@
 title: "Building my first app- A Kindle Reader Highlights Extractor (Part 1)"
 urlPath: "kindle-highlights-tool"
 date: "2020-08-10"
+kind: "note"
+description: "On building an app to manage Kindle highlights"
 categories: 
   - "software-development"
 tags: 

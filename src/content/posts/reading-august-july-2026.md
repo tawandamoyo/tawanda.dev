@@ -1,6 +1,6 @@
 ---
 title: "What I read in August and July"
-description: "What I read (and listened to) in August and July 2026"
+description: '"Dont Make Me Think", "A Hacker''s Mind", and other books I read (and listened to) in August and July 2026'
 urlPath: reading-august-july-2026
 date: "2026-09-07"
 kind: note

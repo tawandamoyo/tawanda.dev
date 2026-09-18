@@ -2,6 +2,8 @@
 title: "What I read in January"
 urlPath: reading-january-2023
 date: "2023-02-02"
+description: '"Thinking in Systems", James Nestor''s "Breath", and other books I read in January 2023'
+kind: "note"
 categories: 
   - "books"
 tags: 

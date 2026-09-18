@@ -2,6 +2,8 @@
 title: "What I am reading in April"
 urlPath: reading-april-2025
 date: "2025-04-01"
+description: ' "The Histories" by Herodotus, "Work", and other books I am reading in April 2025'
+kind: "note"
 categories: 
   - "books"
 tags: 

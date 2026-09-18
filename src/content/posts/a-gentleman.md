@@ -2,6 +2,7 @@
 title: "A Gentleman"
 urlPath: "a-gentleman"
 date: "2024-01-20"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

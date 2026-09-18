@@ -2,6 +2,8 @@
 title: "Good Design"
 urlPath: "good-design"
 date: "2023-01-17"
+description: "Why an ancient Spartan cup is the epitome of good design"
+kind: "note"
 categories: 
   - "books"
   - "design"
