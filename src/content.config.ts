@@ -8,6 +8,8 @@ const posts = defineCollection({
     .object({
       title: z.string(),
       date: z.coerce.date(),
+      // Last substantive revision — feeds dateModified and the sitemap.
+      updated: z.coerce.date().optional(),
       urlPath: z.string().optional(),
       categories: z.array(z.string()).default([]),
       tags: z.array(z.string()).default([]),

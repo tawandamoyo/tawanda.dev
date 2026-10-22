@@ -7,8 +7,9 @@
   --accent: #2F6B45;
   --hairline: rgba(32, 36, 30, 0.14);
   --intro-size: 1.3rem;
-  --serif: "Charter", "Bitstream Charter", "Source Serif 4", "Iowan Old Style", Georgia, serif;
-  --mono: "Berkeley Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* Self-hosted via the Astro fonts API — see astro.config.mjs. */
+  --serif: var(--font-serif);
+  --mono: var(--font-mono);
 }
 :root[data-phase="dawn"] {
   --ground: #F8F4EC;
@@ -99,12 +100,12 @@ a:focus-visible {
   border-radius: 1px;
 }
 
-header.site h1 {
+header.site .name {
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.01em;
 }
-header.site h1 a { text-decoration: none; }
+header.site .name a { text-decoration: none; }
 header.site .role {
   color: var(--muted);
   font-size: 0.9rem;
@@ -288,7 +289,7 @@ section:target > h2 { color: var(--accent); }
   margin-top: 1em;
 }
 .prose code { font-family: var(--mono); font-size: 0.85em; }
-.prose img { max-width: 100%; }
+.prose img { max-width: 100%; height: auto; }
 .prose table {
   border-collapse: collapse;
   margin-top: 1em;

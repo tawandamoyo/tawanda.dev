@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { allProjects, projectSlug, fmtDate, PROJECT_AREAS, resolveRelated } from '../../lib/content';
+import { author, breadcrumbs, SITE, WEBSITE_ID } from '../../lib/schema';
 
 export async function getStaticPaths() {
   const projects = await allProjects();
@@ -15,6 +16,26 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 const area = PROJECT_AREAS.find((a) => a.key === project.data.area);
 const related = await resolveRelated(project.data.related ?? []);
+
+const slug = projectSlug(project);
+const url = `${SITE}/projects/${slug}/`;
+const ogImage = `/og/projects/${slug}.png`;
+const schema = [
+  {
+    '@type': 'CreativeWork',
+    '@id': `${url}#work`,
+    name: project.data.title,
+    description: project.data.summary,
+    url,
+    dateCreated: project.data.date.toISOString(),
+    creator: author,
+    isPartOf: { '@id': WEBSITE_ID },
+    image: `${SITE}${ogImage}`,
+    ...(project.data.tags.length > 0 && { keywords: project.data.tags.join(', ') }),
+    ...(project.data.link && { sameAs: project.data.link }),
+  },
+  breadcrumbs([['Home', '/'], ['Work', '/projects/'], [project.data.title, `/projects/${slug}/`]]),
+];
 ---
 
 <Base
@@ -22,7 +43,9 @@ const related = await resolveRelated(project.data.related ?? []);
   description={project.data.summary}
   ogType="article"
   publishedTime={project.data.date}
-  ogImage={`/og/projects/${projectSlug(project)}.png`}
+  tags={project.data.tags}
+  ogImage={ogImage}
+  schema={schema}
 >
   <article class="post">
     <header>

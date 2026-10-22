@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { Font } from 'astro:assets';
+import { person, website, type Node } from '../lib/schema';
 
 interface Props {
   title?: string;
@@ -8,9 +10,15 @@ interface Props {
   ogType?: 'website' | 'article';
   /** Publication date for article social metadata. */
   publishedTime?: Date;
+  /** Last revision, when it differs from publication. */
+  modifiedTime?: Date;
+  /** Topic tags for article:tag. */
+  tags?: string[];
+  /** Page-specific schema.org nodes, merged into the site graph. */
+  schema?: Node[];
   /** Wider grid for long-form posts with a metadata rail and table of contents. */
   wide?: boolean;
-  /** Person schema belongs once per crawl path, not on every page — set on / and /about/. */
+  /** Full Person node belongs on / and /about/; elsewhere pages reference it by @id. */
   includePersonSchema?: boolean;
   /** Keep the page out of search results — for the 404 page. */
   noindex?: boolean;
@@ -19,10 +27,13 @@ interface Props {
 }
 
 const {
-  title = 'Tawanda Moyo',
+  title = 'Tawanda Moyo — Software Engineer & Writer on AI Safety',
   description = 'Software engineer and technical writer in Harare writing about AI, technology, and human agency.',
   ogType = 'website',
   publishedTime,
+  modifiedTime,
+  tags = [],
+  schema = [],
   wide = false,
   includePersonSchema = false,
   noindex = false,
@@ -33,6 +44,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(ogImagePath, Astro.site);
 
 const path = Astro.url.pathname;
+// Articles carry their own h1; everywhere else the name is the page heading.
+const nameIsHeading = ogType !== 'article';
+
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [website, ...(includePersonSchema ? [person] : []), ...schema],
+};
 const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefined);
 ---
 
@@ -53,7 +71,8 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
         var toggle = null;
         var MODES = ['sun', 'day', 'night'];
         var LABELS = { sun: 'following the sun', day: 'always daylight', night: 'always night' };
-        var mode = localStorage.getItem('sun-mode') || 'sun';
+        var mode = 'sun';
+        try { mode = localStorage.getItem('sun-mode') || 'sun'; } catch (e) {}
         if (MODES.indexOf(mode) === -1) mode = 'sun';
 
         function harareNow() {
@@ -106,18 +125,28 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
           return 'rgb(' + mixCh(a[0], b[0], f) + ',' + mixCh(a[1], b[1], f) + ',' + mixCh(a[2], b[2], f) + ')';
         }
 
+        // Every write to a root custom property restyles the whole page, so
+        // only touch the ones whose value actually moved since last time.
+        var written = {};
+        function setToken(name, value) {
+          if (written[name] === value) return;
+          written[name] = value;
+          if (value === null) root.style.removeProperty('--' + name);
+          else root.style.setProperty('--' + name, value);
+        }
+
         function setBlend(bl) {
           var pa = PAL[bl.a], pb = PAL[bl.b];
           for (var i = 0; i < KEYS.length; i++) {
-            root.style.setProperty('--' + KEYS[i], mixHex(pa[KEYS[i]], pb[KEYS[i]], bl.f));
+            setToken(KEYS[i], mixHex(pa[KEYS[i]], pb[KEYS[i]], bl.f));
           }
           var ha = pa.hair, hb = pb.hair;
-          root.style.setProperty('--hairline', 'rgba(' + mixCh(ha[0], hb[0], bl.f) + ',' + mixCh(ha[1], hb[1], bl.f) + ',' +
+          setToken('hairline', 'rgba(' + mixCh(ha[0], hb[0], bl.f) + ',' + mixCh(ha[1], hb[1], bl.f) + ',' +
             mixCh(ha[2], hb[2], bl.f) + ',' + (ha[3] + (hb[3] - ha[3]) * bl.f).toFixed(3) + ')');
         }
         function clearBlend() {
-          for (var i = 0; i < KEYS.length; i++) root.style.removeProperty('--' + KEYS[i]);
-          root.style.removeProperty('--hairline');
+          for (var i = 0; i < KEYS.length; i++) setToken(KEYS[i], null);
+          setToken('hairline', null);
         }
 
         function sunNote(t, phase) {
@@ -135,26 +164,35 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
           return 'it is night in southern Africa — sunrise in ' + hrs(until) + '.';
         }
 
-        function syncThemeColor() {
+        // Computed from the palette rather than read back with getComputedStyle,
+        // which would force a synchronous restyle of the whole document.
+        function syncThemeColor(ground) {
           var meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.setAttribute('content', getComputedStyle(root).getPropertyValue('--ground').trim());
+          if (meta && meta.getAttribute('content') !== ground) meta.setAttribute('content', ground);
+        }
+
+        function setText(el, text) {
+          if (el && el.textContent !== text) el.textContent = text;
         }
 
         function apply() {
+          var phase, ground;
           if (mode === 'sun') {
             var t = harareNow();
             var bl = blendAt(t);
-            var phase = bl.f < 0.5 ? bl.a : bl.b;
+            phase = bl.f < 0.5 ? bl.a : bl.b;
             setBlend(bl);
-            root.setAttribute('data-phase', phase);
-            if (note) note.textContent = 'This page keeps Central Africa Time — ' + sunNote(t, phase);
+            ground = written.ground;
+            setText(note, 'This page keeps Central Africa Time — ' + sunNote(t, phase));
           } else {
+            phase = mode;
             clearBlend();
-            root.setAttribute('data-phase', mode);
-            if (note) note.textContent = 'This page keeps Central Africa Time.';
+            ground = PAL[mode].ground;
+            setText(note, 'This page keeps Central Africa Time.');
           }
-          if (toggle) toggle.textContent = LABELS[mode];
-          syncThemeColor();
+          if (root.getAttribute('data-phase') !== phase) root.setAttribute('data-phase', phase);
+          setText(toggle, LABELS[mode]);
+          syncThemeColor(ground);
         }
 
         // Set colors immediately, before the body paints, so there is no
@@ -166,7 +204,7 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
           toggle = document.getElementById('sun-toggle');
           toggle.addEventListener('click', function () {
             mode = MODES[(MODES.indexOf(mode) + 1) % MODES.length];
-            localStorage.setItem('sun-mode', mode);
+            try { localStorage.setItem('sun-mode', mode); } catch (e) {}
             apply();
           });
           apply();
@@ -174,8 +212,11 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
         });
       })();
     </script>
+    <Font cssVariable="--font-serif" preload={[{ weight: '400', style: 'normal' }]} />
+    <Font cssVariable="--font-mono" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Tawanda Moyo" />
     <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
@@ -198,30 +239,23 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={title} />
     <meta name="twitter:site" content="@tbmoyo" />
+    <meta name="twitter:creator" content="@tbmoyo" />
     <meta name="theme-color" content="#F7F8F3" />
     {ogType === 'article' && publishedTime && (
       <meta property="article:published_time" content={publishedTime.toISOString()} />
     )}
-    {includePersonSchema && (
-      <script type="application/ld+json" set:html={JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Person',
-        name: 'Tawanda Moyo',
-        url: 'https://tawanda.dev/',
-        jobTitle: 'Software Engineer & Technical Writer',
-        alumniOf: 'Harare Institute of Technology',
-        description:
-          'Software engineer and technical writer working on AI safety — compute governance, evaluations, and forecasting.',
-        address: { '@type': 'PostalAddress', addressLocality: 'Harare', addressCountry: 'ZW' },
-        sameAs: ['https://github.com/tawandamoyo', 'https://twitter.com/tbmoyo'],
-      })} />
+    {ogType === 'article' && modifiedTime && (
+      <meta property="article:modified_time" content={modifiedTime.toISOString()} />
     )}
+    {ogType === 'article' && <meta property="article:author" content="https://tawanda.dev/about/" />}
+    {ogType === 'article' && tags.map((tag) => <meta property="article:tag" content={tag} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <div class:list={['page', { 'page-wide': wide }]}>
       <header class="site">
-        <h1><a href="/">Tawanda Moyo</a></h1>
+        {nameIsHeading ? <h1 class="name"><a href="/">Tawanda Moyo</a></h1> : <p class="name"><a href="/">Tawanda Moyo</a></p>}
         <p class="role">engineer &amp; writer</p>
         <nav>
           <a href="/about/" aria-current={current('/about')}>Who I am</a>
@@ -246,7 +280,7 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
         </p>
         <div class="sunline">
           <span class="mono" id="sun-note">This page keeps Central Africa Time.</span>
-          <button type="button" id="sun-toggle" aria-label="Change how the page chooses light or dark">following the sun</button>
+          <button type="button" id="sun-toggle" title="Change how the page chooses light or dark">following the sun</button>
         </div>
         <p class="heart">Moyo means heart.</p>
       </footer>

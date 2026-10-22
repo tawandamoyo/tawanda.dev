@@ -120,6 +120,32 @@ export function postDescription(post: Post): string | undefined {
 }
 
 /**
+ * Meta description for search snippets. Hand-written wins; otherwise the
+ * opening of the post itself, so no page falls back to the site-wide line
+ * and search engines never see thirty pages claiming the same summary.
+ */
+export function postMetaDescription(post: Post): string {
+  return postDescription(post) ?? excerpt(post.body ?? '');
+}
+
+/** Plain-text opening of a markdown body, cut at a word boundary near `max` chars. */
+export function excerpt(markdown: string, max = 155): string {
+  const text = markdown
+    .replace(/^---[\s\S]*?---/, '')
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/^\s{0,3}(#{1,6}|>|[-*+]|\d+\.)\s+/gm, '')
+    .replace(/[*_`~]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:.\s—-]+$/, '')}…`;
+}
+
+/**
  * Resolves hand-curated "post:<id>" / "project:<id>" onward links to
  * href + title. Unresolved ids are dropped rather than thrown — a typo in
  * frontmatter shouldn't break the build.

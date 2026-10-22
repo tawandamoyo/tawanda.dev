@@ -1,11 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
+import { PERSON_ID, SITE, WEBSITE_ID } from '../lib/schema';
 ---
 
 <Base
-  title="Who I am - Tawanda Moyo"
-  description="About Tawanda Moyo, a software engineer and writer in Harare working on AI safety, open source, and public-interest technology."
+  title="About Tawanda Moyo — Engineer & Writer in Harare"
+  description="Tawanda Moyo is a software engineer and technical writer in Zimbabwe: SpiderMonkey contributor, now working on AI safety and the Africa Compute Tracker."
   includePersonSchema
+  schema={[{ '@type': 'ProfilePage', '@id': `${SITE}/about/#page`, url: `${SITE}/about/`, name: 'About Tawanda Moyo', mainEntity: { '@id': PERSON_ID }, isPartOf: { '@id': WEBSITE_ID } }]}
 >
   <div class="prose" style="margin-top: 3.5rem;">
     <p>
