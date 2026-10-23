@@ -50,7 +50,10 @@ export const person: Node = {
   subjectOf: {
     '@type': 'Dataset',
     name: 'Africa Compute Tracker',
+    description:
+      'An open, version-controlled dataset of AI compute infrastructure across Africa, with every data point sourced, dated, and assigned a confidence level.',
     url: 'https://africacomputetracker.org',
+    license: 'https://creativecommons.org/licenses/by/4.0/',
     creator: { '@id': PERSON_ID },
   },
 };
