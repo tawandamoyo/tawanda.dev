@@ -1,9 +1,9 @@
 ---
 title: Zhira
 emoji: 🧭
-metaDescription: A versioned context pipeline over five years of Kindle highlights - 14,257 records from 299 books - with retrieval and agent-facing tools on top.
+metaDescription: A versioned context pipeline over my Kindle highlights, with retrieval and agent-facing tools on top.
 date: "2026-07-27"
-summary: "Zhira, Shona for “path(s)”, is a versioned context pipeline over a reading corpus, turning Kindle highlights and notes into a retrievable, reliable, cited context for humans and models"
+summary: "Zhira, Shona for “path(s)”, is a versioned context pipeline over a reading corpus of Kindle highlights and notes."
 tags:
   - Python
   - Retrieval
@@ -19,8 +19,6 @@ related:
 ### What this is
 
 *Zhira* is Shona for "path(s)". Kindle highlights extraction and organisation were solved by [Nota](/projects/kindle-highlights-desktop-app/) and the [CLI](/projects/kindle-highlights-cli-tool/); what was left was retrieval - how to find the passage half-remembered, the connection between two books read four years apart, or the common strands in _Why Greatness Cannot Be Planned_ and _Obliquity_.
-
-The corpus is currently **over 14,000 records from 299 books**, roughly 620,000 words, going back 6 years.
 
 *Zhira* is a versioned context pipeline: source
 data changes, and the system produces a new, checksummed artifact you can diff, verify, and serve, to a person or to a model with citations back to the book and location.

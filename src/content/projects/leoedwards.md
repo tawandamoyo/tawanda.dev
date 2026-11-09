@@ -14,6 +14,6 @@ link: https://leoedwardsmining.com
 
 ### Brief
 
-A website for a mining company made with the Astro Framework.
+A website for a mining company made with the Astro framework.
 
 The site is live at [leoedwardsmining.com](https://leoedwardsmining.com).

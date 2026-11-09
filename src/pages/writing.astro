@@ -14,7 +14,7 @@ const archive = await archivedPosts();
 >
   <section id="essays">
     <h2>Essays</h2>
-    <p class="shelfnote">Longer, a little more thoughtful</p>
+    <p class="shelfnote">Longer, a little more thoughtful.</p>
 
     {essays.map((post) => (
       <div class="entry">
@@ -46,7 +46,6 @@ const archive = await archivedPosts();
 
   <section id="elsewhere">
     <h2>Published elsewhere</h2>
-    <p class="shelfnote">Published outside this site.</p>
 
     <div class="entry">
       <div class="head">
@@ -57,10 +56,6 @@ const archive = await archivedPosts();
         </span>
         <span class="when mono">techzim · May 2025</span>
       </div>
-      <p class="what">
-        Anthropic ships a model under ASL-3 for the first time, and what a
-        capability threshold looks like when a lab actually crosses one.
-      </p>
     </div>
 
     <div class="entry">
@@ -72,10 +67,6 @@ const archive = await archivedPosts();
         </span>
         <span class="when mono">techzim · May 2025</span>
       </div>
-      <p class="what">
-        A chatbot starts talking about white genocide in South Africa unprompted —
-        the case for African involvement in how these systems get governed.
-      </p>
     </div>
 
     <p class="allwriting">
@@ -87,17 +78,12 @@ const archive = await archivedPosts();
         <span class="title"><a href="https://talkjs.com/resources/author/tawanda/">Developer tutorials — TalkJS</a></span>
         <span class="when mono">talkjs · 2022</span>
       </div>
-      <p class="what">
-        Implementation guides for a chat SDK, written as a technical writer —
-        webhooks, contact lists, support chat, live comments.
-      </p>
     </div>
   </section>
 
   {archive.length > 0 && (
     <section id="archive">
       <h2>Archive</h2>
-      <p class="shelfnote">Early dev logs and how-tos, kept for the record.</p>
       <ul class="archivelist">
         {archive.map((post) => (
           <li>

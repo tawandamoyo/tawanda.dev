@@ -1,7 +1,7 @@
 ---
 title: Nota CLI
 emoji: 💾
-metaDescription: A Node.js CLI for extracting and parsing highlights and notes made on Kindle ereaders.
+metaDescription: A Node.js CLI for extracting and parsing highlights and notes made on Kindle e-readers.
 date: "2023-03-02"
 summary: A Node.js CLI that parses a Kindle's clippings file into a folder of Markdown.
 tags:

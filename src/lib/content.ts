@@ -65,17 +65,17 @@ export const PROJECT_AREAS: {
   /** Oldest first: the reading shelf is a progression, and progressions read forwards. */
   chronological?: boolean;
 }[] = [
-  { key: 'field', label: 'In the field', note: 'Systems deployed for real people and real institutions.' },
-  { key: 'oss', label: 'Standards & open source', note: 'Changes landed in codebases and specifications I did not start.' },
+  { key: 'field', label: 'In the field' },
+  { key: 'oss', label: 'Standards & open source' },
   {
     key: 'reading',
     label: 'Reading infrastructure · 2021–present',
     note: 'One corpus, five years: 14,257 highlights and notes from 299 books, 2019–2025.',
-    close: 'Extraction → organisation → retrieval. Each layer only became worth building once the one beneath it was solid.',
+    close: 'Extraction → organisation → retrieval.',
     chronological: true,
   },
-  { key: 'tools', label: 'Tools & experiments', note: 'Built to learn something, or because I wanted the tool to exist.' },
-  { key: 'client', label: 'Client work', note: 'The trade that funds the rest.' },
+  { key: 'tools', label: 'Tools & experiments' },
+  { key: 'client', label: 'Client work' },
 ];
 
 export async function projectsByArea(): Promise<Map<string, Project[]>> {

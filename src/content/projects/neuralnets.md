@@ -18,6 +18,6 @@ A project to learn more about Machine Learning and JS by implementing a neural n
 
 ### Solution
 
-The neural network is implemented in vanilla JavaScript and then trained on the MNIST data set.
+The neural network is implemented in vanilla JavaScript and then trained on the MNIST dataset.
 
 [Github](https://github.com/tawandamoyo/neural-nets)

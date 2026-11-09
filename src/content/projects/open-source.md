@@ -17,8 +17,6 @@ related:
 
 ### What this is
 
-Ongoing contributions to various codebases and specifications. 
-
 - **[WHATWG HTML Standard](https://html.spec.whatwg.org/)** - editorial contributions to the living standard, including MathML-related work.
 - **[Matrix](https://matrix.org)** - contributions to the open protocol's website and documentation.
 - **[Inspect](https://inspect.aisi.org.uk/)** - contributions to the UK AI Security Institute's open-source evaluations framework's documentation.

@@ -39,7 +39,7 @@ export async function GET(context) {
   return rss({
     title: 'Tawanda Moyo',
     description:
-      'Essays and notes on AI safety, compute governance, software, and the way — from Harare.',
+      'Essays and notes on AI safety, compute governance, and software, from Harare.',
     site: context.site,
     xmlns: { atom: 'http://www.w3.org/2005/Atom' },
     customData: [
