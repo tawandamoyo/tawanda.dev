@@ -1,5 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import { shelvedBooks, hasBookPage } from '../lib/content';
+
+// Same source as the homepage and /reading/, so the three never disagree.
+const reading = (await shelvedBooks()).get('reading') ?? [];
 ---
 
 <Base
@@ -35,8 +39,14 @@ import Base from '../layouts/Base.astro';
       </ul>
       <h2>Reading</h2>
       <ul>
-        <li><em>Non-Things</em> — Byung-Chul Han.</li>
+        {reading.map((book) => (
+          <li>
+            <em>{hasBookPage(book) ? <a href={`/reading/${book.id}/`}>{book.data.title}</a> : book.data.title}</em>
+            {book.data.author && ` — ${book.data.author}`}.
+          </li>
+        ))}
       </ul>
+      <p><a href="/reading/">The whole shelf →</a></p>
     </div>
   </section>
 </Base>

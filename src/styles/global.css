@@ -565,6 +565,55 @@ article.post .postend .refs { margin-top: 0.8rem; font-style: normal; }
 .reading li { margin-top: 0.7rem; list-style: none; }
 .reading li:first-child { margin-top: 0; }
 .reading .by { color: var(--muted); font-size: 0.92rem; }
+.reading .count { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
+.reading .aside {
+  display: block;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+  max-width: 33rem;
+}
+.entry .title .by { color: var(--muted); font-size: 0.92rem; }
+:is(.entry, .reading li):target em a { color: var(--accent); }
+
+/* Read shelf, one quiet year label per group */
+.shelfyear + .shelfyear { margin-top: 2rem; }
+.shelfyear h3 {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.7rem;
+}
+
+/* Book page */
+article.book .subtitle { color: var(--muted); margin-top: 0.35rem; }
+article.book .highlights { margin-top: 3rem; }
+article.book .highlights h2 {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+}
+article.book .highlights blockquote {
+  border-left: 2px solid var(--hairline);
+  padding-left: 1em;
+  font-style: italic;
+  max-width: 36rem;
+}
+article.book .highlights blockquote + blockquote { margin-top: 1.6rem; }
+article.book .highlights blockquote:target { border-left-color: var(--accent); }
+article.book .highlights .loc {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.7rem;
+  font-style: normal;
+  color: var(--muted);
+  text-decoration: none;
+}
+article.book .highlights .loc:hover { color: var(--accent); }
 
 footer.site {
   margin-top: 5.5rem;

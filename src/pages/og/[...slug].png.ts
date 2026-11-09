@@ -5,12 +5,14 @@ import {
   postSlug,
   projectSlug,
   postKind,
+  hasBookPage,
 } from '../../lib/content';
+import { getCollection } from 'astro:content';
 import { ogImage, type OgCard } from '../../lib/og';
 
 /**
  * Per-page Open Graph cards, rendered at build time to
- * /og/site.png, /og/posts/<slug>.png and /og/projects/<slug>.png.
+ * /og/site.png, /og/posts/<slug>.png, /og/projects/<slug>.png and /og/books/<id>.png.
  * Wired up in Base.astro via the `ogImage` prop.
  */
 
@@ -20,7 +22,7 @@ const longDate = (d: Date) =>
   `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 
 export async function getStaticPaths() {
-  const [posts, projects] = await Promise.all([everyPost(), allProjects()]);
+  const [posts, projects, books] = await Promise.all([everyPost(), allProjects(), getCollection('books', hasBookPage)]);
 
   const site = {
     params: { slug: 'site' },
@@ -43,7 +45,15 @@ export async function getStaticPaths() {
     },
   }));
 
-  return [site, ...postCards, ...projectCards];
+  const bookCards = books.map((book) => ({
+    params: { slug: `books/${book.id}` },
+    props: {
+      title: book.data.title,
+      kicker: book.data.author ? `Reading notes · ${book.data.author}` : 'Reading notes',
+    },
+  }));
+
+  return [site, ...postCards, ...projectCards, ...bookCards];
 }
 
 export const GET: APIRoute = async ({ props }) => {

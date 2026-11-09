@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import { shelvedBooks, hasBookPage, bookYear, highlightSpan, type Book } from '../../lib/content';
+import { breadcrumbs } from '../../lib/schema';
+
+const shelves = await shelvedBooks();
+const now = shelves.get('reading') ?? [];
+const close = shelves.get('reference') ?? [];
+const down = shelves.get('abandoned') ?? [];
+
+// Read books, grouped by the year finished (or last highlighted), newest year first.
+const byYear = new Map<number | string, Book[]>();
+for (const book of shelves.get('read') ?? []) {
+  const year = bookYear(book) ?? 'Undated';
+  if (!byYear.has(year)) byYear.set(year, []);
+  byYear.get(year)!.push(book);
+}
+
+const href = (book: Book) => (hasBookPage(book) ? `/reading/${book.id}/` : undefined);
+const count = (book: Book) => (book.data.highlightCount > 0 ? `${book.data.highlightCount} highlights` : undefined);
+---
+
+<Base
+  title="Reading — Tawanda Moyo"
+  description="What Tawanda Moyo is reading and has read — philosophy, history, systems, and technology — with the highlights worth keeping."
+  schema={[breadcrumbs([['Home', '/'], ['Reading', '/reading/']])]}
+>
+  {now.length > 0 && (
+    <section id="now">
+      <h2>Reading now</h2>
+      {now.map((book) => (
+        <div class="entry" id={book.id}>
+          <div class="head">
+            <span class="title">
+              <em>{href(book) ? <a href={href(book)}>{book.data.title}</a> : book.data.title}</em>
+              {book.data.author && <span class="by"> — {book.data.author}</span>}
+            </span>
+          </div>
+          {book.data.aside && <p class="aside">{book.data.aside}</p>}
+        </div>
+      ))}
+    </section>
+  )}
+
+  {close.length > 0 && (
+    <section id="kept-close">
+      <h2>Kept close</h2>
+      {close.map((book) => (
+        <div class="entry" id={book.id}>
+          <div class="head">
+            <span class="title">
+              <em>{href(book) ? <a href={href(book)}>{book.data.title}</a> : book.data.title}</em>
+              {book.data.author && <span class="by"> — {book.data.author}</span>}
+            </span>
+            {highlightSpan(book) && <span class="when mono">{highlightSpan(book)}</span>}
+          </div>
+          {book.data.aside && <p class="aside">{book.data.aside}</p>}
+        </div>
+      ))}
+    </section>
+  )}
+
+  {byYear.size > 0 && (
+    <section id="read">
+      <h2>Read</h2>
+      <p class="shelfnote">By the year I finished them, or last highlighted them.</p>
+      {[...byYear].map(([year, books]) => (
+        <div class="shelfyear">
+          <h3 class="mono">{year}</h3>
+          <ul class="reading">
+            {books.map((book) => (
+              <li id={book.id}>
+                <em>{href(book) ? <a href={href(book)}>{book.data.title}</a> : book.data.title}</em>
+                {book.data.author && <span class="by"> — {book.data.author}</span>}
+                {count(book) && <Fragment>{' '}<span class="count mono">{count(book)}</span></Fragment>}
+                {book.data.aside && <span class="aside">{book.data.aside}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  )}
+
+  {down.length > 0 && (
+    <section id="put-down">
+      <h2>Put down</h2>
+      <ul class="reading">
+        {down.map((book) => (
+          <li id={book.id}>
+            <em>{href(book) ? <a href={href(book)}>{book.data.title}</a> : book.data.title}</em>
+            {book.data.author && <span class="by"> — {book.data.author}</span>}
+            {book.data.aside && <span class="aside">{book.data.aside}</span>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>

@@ -1,6 +1,8 @@
 # Old Eleventy-site paths that no longer exist in the Astro redesign.
 /sitemap.xml            /sitemap-index.xml  301
 # Netlify matches top to bottom, so specific rules sit above the splats.
+/bookshelf/            /reading/   301
+/bookshelf             /reading/   301
 /blog/                 /writing/   301
 /blog/*                /writing/   301
 /tags/*                /writing/   301

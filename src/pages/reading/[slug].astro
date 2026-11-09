@@ -1,0 +1,89 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { hasBookPage, bookShelf, bookYear, highlightSpan, bookLinks, type Shelf } from '../../lib/content';
+import { author as me, breadcrumbs, SITE, WEBSITE_ID } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const books = await getCollection('books', hasBookPage);
+  return books.map((book) => ({ params: { slug: book.id }, props: { book } }));
+}
+
+const { book } = Astro.props;
+const { Content } = await render(book);
+const related = await bookLinks(book);
+const { title, subtitle, author, highlights, highlightCount } = book.data;
+
+const SHELF_LABEL: Record<Shelf, string> = {
+  reading: 'reading now',
+  reference: 'kept close',
+  read: 'read',
+  abandoned: 'put down',
+};
+const shelf = bookShelf(book);
+const crumb = shelf === 'read' && bookYear(book) ? `read · ${bookYear(book)}` : shelf && SHELF_LABEL[shelf];
+const span = highlightSpan(book);
+const description = book.data.aside ?? `Notes and highlights from ${title}${author ? ` by ${author}` : ''}.`;
+
+const url = `${SITE}/reading/${book.id}/`;
+const schema = [
+  {
+    '@type': 'WebPage',
+    '@id': `${url}#page`,
+    url,
+    name: `${title} — reading notes`,
+    description,
+    author: me,
+    isPartOf: { '@id': WEBSITE_ID },
+    about: {
+      '@type': 'Book',
+      name: subtitle ? `${title}: ${subtitle}` : title,
+      ...(author && { author: { '@type': 'Person', name: author } }),
+    },
+  },
+  breadcrumbs([['Home', '/'], ['Reading', '/reading/'], [title, `/reading/${book.id}/`]]),
+];
+---
+
+<Base title={`${title} — Tawanda Moyo`} description={description} schema={schema} ogImage={`/og/books/${book.id}.png`}>
+  <article class="post book">
+    <header>
+      <p class="crumb mono"><a href="/reading/">reading</a>{crumb && ` / ${crumb}`}</p>
+      <h1><em>{title}</em></h1>
+      {subtitle && <p class="subtitle">{subtitle}</p>}
+      <p class="postmeta mono">
+        {[author, highlightCount > 0 && `${highlightCount} highlights`, span].filter(Boolean).join(' · ')}
+      </p>
+      {book.data.aside && <p class="lede">{book.data.aside}</p>}
+    </header>
+
+    {book.body?.trim() && (
+      <div class="body prose">
+        <Content />
+      </div>
+    )}
+
+    {highlights.length > 0 && (
+      <section class="highlights" aria-label="Highlights">
+        <h2 class="mono">Highlights</h2>
+        {highlights.map((h) => (
+          <blockquote id={`h-${h.id}`}>
+            <p>{h.text}</p>
+            {h.loc && <a class="loc mono" href={`#h-${h.id}`}>{h.loc}</a>}
+          </blockquote>
+        ))}
+      </section>
+    )}
+
+    <footer class="postend">
+      {related.length > 0 && (
+        <p class="refs">
+          <span aria-hidden="true">↔</span> {related.map((r, i) => (
+            <Fragment>{i > 0 && ' · '}<a href={r.href}>{r.title}</a></Fragment>
+          ))}
+        </p>
+      )}
+      <p class="refs"><a href="/reading/">The whole shelf</a></p>
+    </footer>
+  </article>
+</Base>

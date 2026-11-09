@@ -1,7 +1,9 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import stats from '../data/reading-stats.json';
 
 export type Post = CollectionEntry<'posts'>;
 export type Project = CollectionEntry<'projects'>;
+export type Book = CollectionEntry<'books'>;
 
 /** Slug for a post: explicit urlPath wins, filename otherwise (URLs preserved from the Eleventy site). */
 export function postSlug(post: Post): string {
@@ -52,6 +54,16 @@ export async function allProjects(): Promise<Project[]> {
   return all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
+/** Size of the Kindle archive, written by `npm run reading` — totals only, no titles. */
+export const readingStats = {
+  ...stats,
+  firstYear: Number(stats.first.slice(0, 4)),
+  lastYear: Number(stats.last.slice(0, 4)),
+};
+
+/** 12085 → "12,085". */
+export const num = (n: number) => n.toLocaleString('en-GB');
+
 /**
  * Shelves for the projects page, in the order they appear.
  * Client work last, deliberately — it is the trade that funds the rest.
@@ -69,8 +81,8 @@ export const PROJECT_AREAS: {
   { key: 'oss', label: 'Standards & open source' },
   {
     key: 'reading',
-    label: 'Reading infrastructure · 2021–present',
-    note: 'One corpus, five years: 14,257 highlights and notes from 299 books, 2019–2025.',
+    label: `Reading infrastructure · ${readingStats.firstYear}–present`,
+    note: `One corpus: ${num(readingStats.highlights + readingStats.notes)} highlights and notes from ${readingStats.books} books, ${readingStats.firstYear}–${readingStats.lastYear}.`,
     close: 'Extraction → organisation → retrieval.',
     chronological: true,
   },
@@ -146,7 +158,7 @@ export function excerpt(markdown: string, max = 155): string {
 }
 
 /**
- * Resolves hand-curated "post:<id>" / "project:<id>" onward links to
+ * Resolves hand-curated "post:<id>" / "project:<id>" / "book:<id>" onward links to
  * href + title. Unresolved ids are dropped rather than thrown — a typo in
  * frontmatter shouldn't break the build.
  */
@@ -158,5 +170,109 @@ export async function resolveRelated(ids: string[]): Promise<{ href: string; tit
   for (const project of projects) {
     lookup.set(`project:${project.id}`, { href: `/projects/${projectSlug(project)}/`, title: project.data.title });
   }
+  for (const book of await getCollection('books')) {
+    if (hasBookPage(book)) lookup.set(`book:${book.id}`, { href: `/reading/${book.id}/`, title: book.data.title });
+  }
   return ids.map((id) => lookup.get(id)).filter((r): r is { href: string; title: string } => Boolean(r));
+}
+
+// ── Reading ────────────────────────────────────────────────────────────────
+
+/** A Kindle book highlighted this recently counts as being read, status or not. */
+const READING_WINDOW_DAYS = 60;
+
+/** "Reading now" stays short: pinned books, then marked ones, then the most recently highlighted. */
+const READING_NOW_MAX = 3;
+
+export type Shelf = 'reading' | 'reference' | 'read' | 'abandoned';
+
+/** Explicit status wins; otherwise recent highlights mean "reading now"; otherwise off the shelf. */
+export function bookShelf(book: Book): Shelf | undefined {
+  if (book.data.hidden) return undefined;
+  if (book.data.status) return book.data.status;
+  const last = book.data.lastHighlight;
+  if (last && Date.now() - last.getTime() < READING_WINDOW_DAYS * 86_400_000) return 'reading';
+  return undefined;
+}
+
+/** A book earns its own page only when there is something of mine on it: notes or chosen highlights. */
+export function hasBookPage(book: Book): boolean {
+  return !book.data.hidden && (Boolean(book.body?.trim()) || book.data.highlights.length > 0);
+}
+
+/** The year a book belongs to on the shelf: when finished, or failing that, when last highlighted. */
+export function bookYear(book: Book): number | undefined {
+  return (book.data.finished ?? book.data.lastHighlight)?.getFullYear();
+}
+
+/** Most recent first: finished date, then last highlight. */
+function bookRecency(book: Book): number {
+  return (book.data.finished ?? book.data.lastHighlight)?.getTime() ?? 0;
+}
+
+let warnedStale = false;
+
+export async function shelvedBooks(): Promise<Map<Shelf, Book[]>> {
+  const all = await getCollection('books');
+  // A book with no status is only on the shelf while it is being highlighted.
+  // Once that window passes it drops off the site, so say which ones need a status.
+  if (!warnedStale) {
+    warnedStale = true;
+    const stale = all.filter((b) => !b.data.hidden && !b.data.status && b.data.lastHighlight && !bookShelf(b));
+    if (stale.length > 0) {
+      console.warn(
+        `[reading] ${stale.length} book(s) left "reading now" and are off the shelf until given a status ` +
+          `(read | reference | abandoned | reading) in src/content/books/: ${stale.map((b) => b.id).join(', ')}`,
+      );
+    }
+  }
+  const shelves = new Map<Shelf, Book[]>();
+  for (const book of all.sort((a, b) => bookRecency(b) - bookRecency(a))) {
+    const shelf = bookShelf(book);
+    if (!shelf) continue;
+    if (!shelves.has(shelf)) shelves.set(shelf, []);
+    shelves.get(shelf)!.push(book);
+  }
+  // Books I have marked as reading lead; ones inferred from recent highlights follow.
+  const reading = shelves.get('reading');
+  if (reading) {
+    const rank = (b: Book) => (b.data.pin ? 2 : 0) + (b.data.status ? 1 : 0);
+    reading.sort((a, b) => rank(b) - rank(a));
+    shelves.set('reading', reading.slice(0, READING_NOW_MAX));
+  }
+  return shelves;
+}
+
+/** "2019–2021", or one year when it all happened in one. */
+export function highlightSpan(book: Book): string | undefined {
+  const { firstHighlight: a, lastHighlight: b } = book.data;
+  if (!a || !b) return undefined;
+  return a.getFullYear() === b.getFullYear() ? `${a.getFullYear()}` : `${a.getFullYear()}–${b.getFullYear()}`;
+}
+
+/**
+ * Everything that points at a book with "book:<id>", plus what the book points
+ * at itself — so a link only has to be written down on one side.
+ */
+export async function bookLinks(book: Book): Promise<{ href: string; title: string }[]> {
+  const key = `book:${book.id}`;
+  const [posts, projects] = await Promise.all([everyPost(), allProjects()]);
+  const inbound = [
+    ...posts.filter((p) => p.data.related?.includes(key)).map((p) => `post:${p.id}`),
+    ...projects.filter((p) => p.data.related?.includes(key)).map((p) => `project:${p.id}`),
+  ];
+  const links = await resolveRelated([...new Set([...(book.data.related ?? []), ...inbound])]);
+  return links;
+}
+
+/** Book pages that list `key` (e.g. "post:<id>") in their related links. */
+export async function booksLinkingTo(key: string): Promise<{ href: string; title: string }[]> {
+  const books = await getCollection('books', (b) => hasBookPage(b) && Boolean(b.data.related?.includes(key)));
+  return books.map((b) => ({ href: `/reading/${b.id}/`, title: b.data.title }));
+}
+
+/** Merge link lists, first occurrence of each href wins. */
+export function mergeLinks(...lists: { href: string; title: string }[][]): { href: string; title: string }[] {
+  const seen = new Set<string>();
+  return lists.flat().filter((l) => !seen.has(l.href) && Boolean(seen.add(l.href)));
 }

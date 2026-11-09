@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "reading": "node scripts/reading.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
+    "js-yaml": "^4.3.2",
     "satori": "^0.33.4"
   }
 }

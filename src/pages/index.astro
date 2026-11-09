@@ -1,11 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
-import { allPosts, homeEssays, postSlug, postKind, fmtDate, postDescription } from '../lib/content';
+import { allPosts, homeEssays, postSlug, postKind, fmtDate, postDescription, shelvedBooks, hasBookPage, readingStats, num } from '../lib/content';
 
 const essays = await homeEssays();
 // Genuinely the newest thing published, not the newest of the featured five —
 // otherwise the homepage keeps announcing a stale post as "latest".
 const latest = (await allPosts())[0];
+// What is open on the desk now; if nothing is, the books kept close.
+const shelves = await shelvedBooks();
+const desk = (shelves.get('reading')?.length ? shelves.get('reading')! : shelves.get('reference') ?? []).slice(0, 4);
 ---
 
 <Base
@@ -66,10 +69,10 @@ const latest = (await allPosts())[0];
     <div class="entry" id="w-reading">
       <div class="head">
         <span class="title"><a href="/projects/#reading">Reading infrastructure</a></span>
-        <span class="when mono">2021–</span>
+        <span class="when mono">{readingStats.firstYear}–</span>
       </div>
       <p class="what">
-        Five years worth of reading, 14 000 highlights from almost 300 books.
+        Reading since {readingStats.firstYear}: {num(readingStats.highlights)} highlights from {readingStats.books} books.
         <a href="/projects/kindle-highlights-desktop-app/">Nota</a> extracts them,
         the <a href="/projects/kindle-highlights-cli-tool/">CLI</a> makes that
         scriptable, and <a href="/projects/zhira/">Zhira</a> turns the archive
@@ -109,11 +112,14 @@ const latest = (await allPosts())[0];
   <section id="reading">
     <h2>Reading</h2>
     <ul class="reading">
-      <li><em>Zhuangzi</em> <span class="by">— trans. Burton Watson, again</span></li>
-      <li><em>The Scout Mindset</em> <span class="by">— Julia Galef</span></li>
-      <li><em>Walden</em> <span class="by">— Henry David Thoreau</span></li>
+      {desk.map((book) => (
+        <li>
+          <em>{hasBookPage(book) ? <a href={`/reading/${book.id}/`}>{book.data.title}</a> : book.data.title}</em>
+          {book.data.author && <span class="by"> — {book.data.author}</span>}
+        </li>
+      ))}
     </ul>
-    <p class="allwriting"><a href="/bookshelf/">The bookshelf →</a></p>
+    <p class="allwriting"><a href="/reading/">Everything I have read →</a></p>
   </section>
 
   <section id="contact">
