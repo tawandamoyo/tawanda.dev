@@ -79,11 +79,16 @@ body {
   color: var(--muted);
 }
 
-a, button, .entry, header.site nav a, footer.site {
+/* Hover answers at once; the slow fade is only for a whole-page change of
+   light, which the toggle marks with .theme-shift while it runs. */
+a, button {
+  transition: color 0.15s ease, border-color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.theme-shift :is(a, button) {
   transition: color 1.2s ease, border-color 1.2s ease, text-decoration-color 1.2s ease;
 }
 @media (prefers-reduced-motion: reduce) {
-  a, button, .entry, header.site nav a, footer.site { transition: none; }
+  a, button, .theme-shift :is(a, button) { transition: none; }
 }
 
 a {

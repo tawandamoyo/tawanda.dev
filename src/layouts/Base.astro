@@ -69,6 +69,7 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
         var root = document.documentElement;
         var note = null;
         var toggle = null;
+        var shiftTimer = 0;
         var MODES = ['sun', 'day', 'night'];
         var LABELS = { sun: 'following the sun', day: 'always daylight', night: 'always night' };
         var mode = 'sun';
@@ -89,9 +90,9 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
         // Palettes mirror the data-phase tokens in global.css.
         var PAL = {
           night: { ground: '#0F130F', ink: '#D6D8CC', muted: '#8B9084', faint: '#62675C', accent: '#8CC29B', hair: [214, 216, 204, 0.16] },
-          dawn:  { ground: '#F8F4EC', ink: '#262420', muted: '#77716A', faint: '#A39C92', accent: '#396B45', hair: [38, 36, 32, 0.14] },
+          dawn:  { ground: '#F8F4EC', ink: '#262420', muted: '#6C665E', faint: '#A39C92', accent: '#396B45', hair: [38, 36, 32, 0.14] },
           day:   { ground: '#F7F8F3', ink: '#20241E', muted: '#6E7268', faint: '#9A9E93', accent: '#2F6B45', hair: [32, 36, 30, 0.14] },
-          dusk:  { ground: '#F3EFE6', ink: '#27231E', muted: '#786F63', faint: '#A59A8B', accent: '#38663F', hair: [39, 35, 30, 0.15] }
+          dusk:  { ground: '#F3EFE6', ink: '#27231E', muted: '#665F53', faint: '#A59A8B', accent: '#38663F', hair: [39, 35, 30, 0.15] }
         };
         var KEYS = ['ground', 'ink', 'muted', 'faint', 'accent'];
 
@@ -205,6 +206,9 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
           toggle.addEventListener('click', function () {
             mode = MODES[(MODES.indexOf(mode) + 1) % MODES.length];
             try { localStorage.setItem('sun-mode', mode); } catch (e) {}
+            root.classList.add('theme-shift');
+            clearTimeout(shiftTimer);
+            shiftTimer = setTimeout(function () { root.classList.remove('theme-shift'); }, 1300);
             apply();
           });
           apply();
