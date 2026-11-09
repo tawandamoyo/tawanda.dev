@@ -212,7 +212,9 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
             apply();
           });
           apply();
-          setInterval(apply, 60 * 1000);
+          // No one is looking at a background tab; catch up when it returns.
+          setInterval(function () { if (!document.hidden) apply(); }, 60 * 1000);
+          document.addEventListener('visibilitychange', function () { if (!document.hidden) apply(); });
         });
       })();
     </script>
