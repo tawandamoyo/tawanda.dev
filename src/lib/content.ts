@@ -72,8 +72,6 @@ export const PROJECT_AREAS: {
   key: Project['data']['area'];
   label: string;
   note?: string;
-  /** Closing line under the shelf — for shelves that read as a sequence rather than a list. */
-  close?: string;
   /** Oldest first: the reading shelf is a progression, and progressions read forwards. */
   chronological?: boolean;
 }[] = [
@@ -83,7 +81,6 @@ export const PROJECT_AREAS: {
     key: 'reading',
     label: `Reading infrastructure · ${readingStats.firstYear}–present`,
     note: `One corpus: ${num(readingStats.highlights + readingStats.notes)} highlights and notes from ${readingStats.books} books, ${readingStats.firstYear}–${readingStats.lastYear}.`,
-    close: 'Extraction → organisation → retrieval.',
     chronological: true,
   },
   { key: 'tools', label: 'Tools & experiments' },

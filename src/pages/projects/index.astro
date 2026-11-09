@@ -41,13 +41,12 @@ const grouped = await projectsByArea();
             <p class="what">{project.data.summary}</p>
             {project.data.link && (
               <p class="refs">
-                ↗ <a href={project.data.link}>{new URL(project.data.link).hostname}</a>
+                <span aria-hidden="true">↗</span> <a href={project.data.link}>{new URL(project.data.link).hostname}</a>
               </p>
             )}
           </div>
         ))}
 
-        {area.close && <p class="shelfnote">{area.close}</p>}
       </section>
     ) : null;
   })}
