@@ -2,6 +2,7 @@
 title: "A Loan That Cannot be Repaid"
 urlPath: "time-an-unrepayable-loan"
 date: "2024-08-27"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

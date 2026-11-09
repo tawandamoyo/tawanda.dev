@@ -2,6 +2,7 @@
 title: "Knowledge and Property"
 urlPath: "knowledge-and-property"
 date: "2024-08-31"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

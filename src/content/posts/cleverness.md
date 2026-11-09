@@ -2,6 +2,7 @@
 title: "Cleverness"
 urlPath: "cleverness"
 date: "2024-01-23"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

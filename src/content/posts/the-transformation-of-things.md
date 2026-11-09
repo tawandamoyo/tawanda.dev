@@ -2,6 +2,7 @@
 title: "The Transformation of Things"
 urlPath: "the-transformation-of-things"
 date: "2024-04-11"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

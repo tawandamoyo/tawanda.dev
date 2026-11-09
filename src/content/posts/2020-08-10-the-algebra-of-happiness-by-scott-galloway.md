@@ -2,7 +2,7 @@
 title: "The Algebra of Happiness by Scott Galloway"
 urlPath: "the-algebra-of-happiness-scott-galloway"
 date: "2020-08-10"
-description: "Notes on the The Algebra of Happiness by Scott Galloway"
+description: "Notes on The Algebra of Happiness by Scott Galloway"
 kind: "note"
 categories: 
   - "books"

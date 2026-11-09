@@ -2,6 +2,7 @@
 title: "Simplicity"
 urlPath: "simplicity"
 date: "2024-08-27"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

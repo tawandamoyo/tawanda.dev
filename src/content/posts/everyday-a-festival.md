@@ -2,6 +2,7 @@
 title: "Everyday a Festival Day"
 urlPath: "everyday-a-festival-day"
 date: "2024-08-30"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

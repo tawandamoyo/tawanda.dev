@@ -2,6 +2,7 @@
 title: "The Vigor of a Culture: The Unique and the Surprising"
 urlPath: "the-vigor-of-culture"
 date: "2024-01-17"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

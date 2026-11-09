@@ -2,6 +2,7 @@
 title: "A Philosopher"
 urlPath: "a-philosopher"
 date: "2024-01-22"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

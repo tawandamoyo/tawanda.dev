@@ -2,6 +2,7 @@
 title: "There Are No Big Leaps, Only Little Steps"
 urlPath: "there-are-no-big-leaps"
 date: "2024-08-26"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

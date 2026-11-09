@@ -12,7 +12,7 @@ tags:
   - "zimbabwe"
   - "prompt injection"
   
-metaDescription: "A retail chatbots recommends taking legal action against the company. A look at how brittle AI deployments can be, and some solutions"
+metaDescription: "A retail chatbot recommends taking legal action against the company. A look at how brittle AI deployments can be, and some solutions."
 ---
 
 While shopping for some household items, I asked Tina*, their chatbot, what to do about a faulty product that the manager had refused to take back. The bot helpfully provided me with a complaints form and a link to their returns policy. 

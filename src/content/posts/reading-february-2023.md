@@ -2,7 +2,7 @@
 title: "What I read in February"
 urlPath: reading-february-2023
 date: "2023-03-23"
-description: '"Chase, Chance, and Creativity: The Lucky Art of Creativity", and other books I chanced to read in February 2023'
+description: '"Chase, Chance, and Creativity: The Lucky Art of Novelty", and other books I chanced to read in February 2023'
 kind: "note"
 categories: 
   - "books"

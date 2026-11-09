@@ -10,7 +10,7 @@ tags:
   - "programming"
   - "browsers"
   - "spidermonkey"
-metaDescription: "Notes on implementing JavaScript features in Firefox: a useful bridge between web standards, browsers, and programming craft."
+metaDescription: "Notes on implementing JavaScript features in Firefox."
 ---
 
 > [!NOTE] This post is the first in a series of posts about implementing a new JavaScript proposal in the Firefox Web Browser

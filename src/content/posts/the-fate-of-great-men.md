@@ -2,6 +2,7 @@
 title: "The Fate of Great Men"
 urlPath: "the-fate-of-great-men"
 date: "2024-08-31"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

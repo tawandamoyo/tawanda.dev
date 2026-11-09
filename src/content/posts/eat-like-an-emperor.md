@@ -2,6 +2,7 @@
 title: "Eat like an Emperor"
 urlPath: "eat-like-an-emperor"
 date: "2024-04-04"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 

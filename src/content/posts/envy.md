@@ -2,6 +2,7 @@
 title: "Envy"
 urlPath: "envy"
 date: "2024-01-24"
+kind: "fragment"
 categories: 
   - "book quotes"
 tags: 
