@@ -26,6 +26,8 @@ export default defineConfig({
   trailingSlash: 'ignore',
   // ~12 KB of CSS: inlining saves a render-blocking round trip on every first visit.
   build: { inlineStylesheets: 'always' },
+  // Pages are ~35 KB: fetching on hover makes the next click feel instant.
+  prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
   // Self-hosted Latin subsets with metric-matched fallbacks: the same type on
   // every device, no third-party request, and no layout shift when it swaps in.
   experimental: {

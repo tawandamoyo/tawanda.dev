@@ -74,7 +74,7 @@ const schema = [
     <footer class="postend">
       {related.length > 0 && (
         <p class="refs">
-          ↔ {related.map((r, i) => (
+          <span aria-hidden="true">↔</span> {related.map((r, i) => (
             <Fragment>{i > 0 && ' · '}<a href={r.href}>{r.title}</a></Fragment>
           ))}
         </p>
