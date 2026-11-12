@@ -80,7 +80,7 @@ export const PROJECT_AREAS: {
   {
     key: 'reading',
     label: `Reading infrastructure · ${readingStats.firstYear}–present`,
-    note: `One corpus: ${num(readingStats.highlights + readingStats.notes)} highlights and notes from ${readingStats.books} books, ${readingStats.firstYear}–${readingStats.lastYear}.`,
+    note: `${num(readingStats.highlights + readingStats.notes)} highlights and notes from ${readingStats.books} books, ${readingStats.firstYear}–${readingStats.lastYear}.`,
     chronological: true,
   },
   { key: 'tools', label: 'Tools & experiments' },

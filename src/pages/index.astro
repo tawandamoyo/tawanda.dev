@@ -17,7 +17,7 @@ const desk = (shelves.get('reading')?.length ? shelves.get('reading')! : shelves
 >
   <div class="intro">
     <p>
-      I am a software engineer and writer. I build tools and infrastructure for understanding AI systems, and think about how to deploy them in a beneficial manner.
+      I am a software engineer and writer. I build tools and infrastructure for understanding AI systems.
     </p>
     <p>
       I am currently most interested in making sense of widespread machine intelligence - evaluations, forecasting, verification - and the slower question of how to preserve human agency as machines get more capable and are deployed at scale.
@@ -27,7 +27,7 @@ const desk = (shelves.get('reading')?.length ? shelves.get('reading')! : shelves
   {latest && (
     <p class="latest">
       <span class="mono">latest {postKind(latest)}</span>
-      <span><a href={`/${postSlug(latest)}/`}>{latest.data.title}</a> — {fmtDate(latest.data.date)}</span>
+      <span><a href={`/${postSlug(latest)}/`}>{latest.data.title}</a> - {fmtDate(latest.data.date)}</span>
     </p>
   )}
 
@@ -75,8 +75,7 @@ const desk = (shelves.get('reading')?.length ? shelves.get('reading')! : shelves
         Reading since {readingStats.firstYear}: {num(readingStats.highlights)} highlights from {readingStats.books} books.
         <a href="/projects/kindle-highlights-desktop-app/">Nota</a> extracts them,
         the <a href="/projects/kindle-highlights-cli-tool/">CLI</a> makes that
-        scriptable, and <a href="/projects/zhira/">Zhira</a> turns the archive
-        into versioned, cited context for humans and models.
+        scriptable, and <a href="/projects/zhira/">Zhira</a> searches them.
       </p>
     </div>
 
@@ -120,16 +119,4 @@ const desk = (shelves.get('reading')?.length ? shelves.get('reading')! : shelves
       ))}
     </ul>
     <p class="allwriting"><a href="/reading/">Everything I have read →</a></p>
-  </section>
-
-  <section id="contact">
-    <div class="prose">
-      <p>
-        If you are working on serious technical problems, useful AI
-        infrastructure, or a future where people use powerful machines
-        without losing agency,
-        <a href="mailto:moyotawanda@gmail.com">get in touch</a>.
-      </p>
-    </div>
-  </section>
-</Base>
+  </section></Base>

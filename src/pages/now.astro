@@ -26,7 +26,7 @@ const reading = (await shelvedBooks()).get('reading') ?? [];
           <a href="/projects/african-datacentre-tracker/">project page</a>.
         </li>
         <li>
-          <a href="/projects/zhira/">Zhira</a> — retrieval over my reading notes.
+          <a href="/projects/zhira/">Zhira</a> - retrieval over my reading notes.
         </li>
       </ul>
       <h2>Learning</h2>
@@ -34,7 +34,7 @@ const reading = (await shelvedBooks()).get('reading') ?? [];
         <li>The <a href="https://www.cooperativeai.com/" target="_blank" rel="noopener">Cooperative AI</a> course.</li>
         <li>
           MITx <a href="https://mitxonline.mit.edu/" target="_blank" rel="noopener">Data, Economics, and
-          Development Policy</a> — currently Good Economics for Hard Times.
+          Development Policy</a> - currently Good Economics for Hard Times.
         </li>
       </ul>
       <h2>Reading</h2>
@@ -42,7 +42,7 @@ const reading = (await shelvedBooks()).get('reading') ?? [];
         {reading.map((book) => (
           <li>
             <em>{hasBookPage(book) ? <a href={`/reading/${book.id}/`}>{book.data.title}</a> : book.data.title}</em>
-            {book.data.author && ` — ${book.data.author}`}.
+            {book.data.author && ` - ${book.data.author}`}.
           </li>
         ))}
       </ul>
