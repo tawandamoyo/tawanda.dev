@@ -3,7 +3,6 @@ title: "Bias Towards Action"
 urlPath: "bias-towards-action"
 date: "2026-09-17"
 kind: "note"
-description: "On biasing towards action."
 categories:
   - "life"
 tags:

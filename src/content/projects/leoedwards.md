@@ -3,7 +3,7 @@ title: Leo Edwards Mining
 emoji: 🌐
 metaDescription: Website for Leo Edwards Mining. 
 date: "2024-10-15"
-summary: A website development project, using ReactJS and the Astro framework. 
+summary: Website for a mining company, built with React and Astro.
 tags:
   - Web Development
   - React
@@ -11,9 +11,3 @@ tags:
 area: client
 link: https://leoedwardsmining.com
 ---
-
-### Brief
-
-A website for a mining company made with the Astro framework.
-
-The site is live at [leoedwardsmining.com](https://leoedwardsmining.com).

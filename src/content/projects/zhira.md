@@ -21,7 +21,7 @@ related:
 *Zhira* is Shona for "path(s)". Kindle highlights extraction and organisation were solved by [Nota](/projects/kindle-highlights-desktop-app/) and the [CLI](/projects/kindle-highlights-cli-tool/); what was left was retrieval - how to find the passage half-remembered, the connection between two books read four years apart, or the common strands in _Why Greatness Cannot Be Planned_ and _Obliquity_.
 
 *Zhira* is a versioned context pipeline: source
-data changes, and the system produces a new, checksummed artifact you can diff, verify, and serve, to a person or to a model with citations back to the book and location.
+data changes, and the system produces a new, checksummed artifact that can be served to a person or a model with citations back to the book and location.
 
 ### Where it currently is
 

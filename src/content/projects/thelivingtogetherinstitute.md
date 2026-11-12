@@ -12,9 +12,3 @@ tags:
 area: client
 link: https://thelivingtogetherinstitute.org
 ---
-
-### Brief
-
-I built and maintain the organisation's WordPress site as their Tech Fellow.
-
-The site is live at [thelivingtogetherinstitute.org](https://thelivingtogetherinstitute.org).

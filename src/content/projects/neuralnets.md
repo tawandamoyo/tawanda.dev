@@ -12,12 +12,6 @@ tags:
 area: tools
 ---
 
-### Problem
-
-A project to learn more about Machine Learning and JS by implementing a neural network from scratch.
-
-### Solution
-
-The neural network is implemented in vanilla JavaScript and then trained on the MNIST dataset.
+A project to learn more about machine learning and JavaScript.
 
 [Github](https://github.com/tawandamoyo/neural-nets)

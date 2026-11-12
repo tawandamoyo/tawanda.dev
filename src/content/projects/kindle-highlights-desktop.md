@@ -3,7 +3,7 @@ title: Nota Desktop
 emoji: 💾
 metaDescription: An Electron desktop app that extracts and organises Kindle highlights and notes so they stay useful after you finish the book.
 date: "2021-09-01"
-summary: Electron desktop app. Extract and organise highlights so they stay useful after you finish the book.
+summary: Electron desktop app that extracts and organises Kindle highlights and notes.
 tags:
   - JavaScript
   - Electron
@@ -20,8 +20,7 @@ related:
 ### Problem
 
 Many people who read on Kindle e-readers highlight passages and take notes as they go. Amazon
-leaves all of it in one undifferentiated `My Clippings.txt` file, which means that by the time you
-want a passage back, it is effectively gone.
+leaves all of it in one undifferentiated `My Clippings.txt` file.
 
 ### Solution
 

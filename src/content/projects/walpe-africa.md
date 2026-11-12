@@ -9,9 +9,3 @@ tags:
 area: client
 link: https://walpeafrica.org
 ---
-
-### Brief
-
-A website for the Women's Academy for Leadership and Political Excellence (WALPE) Africa, an organisation that trains, mentors, and protects women pursuing political leadership across the continent's five regions.
-
-The site is live at [walpeafrica.org](https://walpeafrica.org).
